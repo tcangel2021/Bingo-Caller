@@ -1,0 +1,3955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Taiwan Elementary English Classroom Bingo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ==========================================================================
+       1. DESIGN TOKENS & STUDIO PALETTE
+       ========================================================================== */
+    :root {
+      --navy-950: #050a18;
+      --navy-900: #081126;
+      --navy-850: #0c1936;
+      --navy-800: #11234a;
+      --navy-700: #183266;
+      --royal-700: #1d4ed8;
+      --royal-600: #2563eb;
+      --royal-500: #3b82f6;
+      --royal-400: #60a5fa;
+      --gold-700: #b45309;
+      --gold-600: #f59e0b;
+      --gold-500: #fbbf24;
+      --gold-400: #fcd34d;
+      --gold-300: #fde68a;
+      --gold-200: #fef3c7;
+      --emerald-700: #047857;
+      --emerald-600: #059669;
+      --emerald-500: #10b981;
+      --rose-700: #be123c;
+      --rose-600: #e11d48;
+      --rose-500: #f43f5e;
+      --white: #ffffff;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-400: #94a3b8;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 26px;
+      --radius-xl: 34px;
+      --shadow-studio:
+        0 24px 54px -14px rgba(2, 6, 18, 0.85),
+        0 6px 18px -4px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.16),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+      --shadow-gold-3d:
+        0 5px 0 var(--gold-700),
+        0 14px 28px -6px rgba(245, 158, 11, 0.55),
+        inset 0 2px 1px rgba(255, 255, 255, 0.65);
+      --shadow-royal-3d:
+        0 4px 0 #1e3a8a,
+        0 12px 24px -6px rgba(37, 99, 235, 0.55),
+        inset 0 1px 1px rgba(255, 255, 255, 0.4);
+      --shadow-emerald-3d:
+        0 4px 0 var(--emerald-700),
+        0 12px 24px -6px rgba(16, 185, 129, 0.48),
+        inset 0 1px 1px rgba(255, 255, 255, 0.45);
+      --font-sans: "Fredoka", "Nunito", "Quicksand", ui-rounded, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans TC", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: var(--font-sans);
+      font-weight: 500;
+      background-color: var(--navy-950);
+      background-image:
+        linear-gradient(170deg, rgba(6, 13, 30, 0.72) 0%, rgba(8, 17, 38, 0.64) 50%, rgba(4, 8, 20, 0.80) 100%),
+        radial-gradient(ellipse 85% 60% at 50% 45%, rgba(12, 25, 54, 0.25), rgba(4, 8, 20, 0.72) 85%),
+        url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhbychm6fjNy3O0aZTz7bfwoEx3bN2ftIUPV9OOVWvDbngtx7km08lj-8&s=10"),
+        linear-gradient(170deg, #0d1f44 0%, #081126 52%, #040814 100%);
+      background-size: cover, cover, cover, cover;
+      background-position: center, center, center, center;
+      background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+      background-attachment: fixed, fixed, fixed, fixed;
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.42;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input, select, textarea {
+      font-family: var(--font-sans);
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      outline: none;
+      touch-action: manipulation;
+      transition: transform 0.14s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.16s ease, filter 0.16s ease, background 0.18s ease;
+    }
+
+    button:active:not(:disabled) {
+      transform: translateY(2px) scale(0.985);
+    }
+
+    button:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
+      box-shadow: none !important;
+    }
+
+    /* ==========================================================================
+       2. LAYOUT & STUDIO TOPBAR
+       ========================================================================== */
+    .app-shell {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      max-width: 1700px;
+      margin: 0 auto;
+      padding: 14px 18px 20px;
+      gap: 14px;
+    }
+
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: linear-gradient(180deg, rgba(22, 46, 94, 0.92) 0%, rgba(10, 21, 46, 0.96) 100%);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 12px 18px;
+      box-shadow: var(--shadow-studio);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-badge {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #fef08a 0%, #fbbf24 45%, #d97706 100%);
+      color: var(--navy-950);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.65rem;
+      box-shadow:
+        0 4px 0 #92400e,
+        0 10px 20px rgba(245, 158, 11, 0.42),
+        inset 0 2px 2px rgba(255, 255, 255, 0.75);
+      flex-shrink: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .title-stack {
+      min-width: 0;
+    }
+
+    .title-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-300);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .game-title {
+      font-size: clamp(1.28rem, 2.3vw, 1.85rem);
+      font-weight: 700;
+      color: var(--white);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      letter-spacing: 0.005em;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+    }
+
+    .mode-switcher {
+      display: inline-flex;
+      background: rgba(5, 10, 24, 0.85);
+      padding: 5px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.65);
+    }
+
+    .mode-btn {
+      padding: 9px 15px;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--slate-300);
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .mode-btn.active {
+      background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
+      color: var(--white);
+      box-shadow:
+        0 3px 0 #1e3a8a,
+        0 6px 16px rgba(37, 99, 235, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    }
+
+    .toolbar-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 15px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: var(--white);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.06) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow:
+        0 3px 0 rgba(4, 9, 22, 0.7),
+        0 6px 14px rgba(0, 0, 0, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    }
+
+    .btn:hover:not(:disabled) {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.1) 100%);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-gold {
+      background: linear-gradient(180deg, #fde047 0%, #fbbf24 45%, #f59e0b 100%);
+      color: var(--navy-950);
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      font-weight: 700;
+      box-shadow: var(--shadow-gold-3d);
+    }
+
+    .btn-gold:hover:not(:disabled) {
+      filter: brightness(1.05);
+    }
+
+    .btn-royal {
+      background: linear-gradient(180deg, #60a5fa 0%, #2563eb 45%, #1d4ed8 100%);
+      color: var(--white);
+      border: 1px solid rgba(191, 219, 254, 0.45);
+      box-shadow: var(--shadow-royal-3d);
+    }
+
+    .btn-royal:hover:not(:disabled) {
+      filter: brightness(1.06);
+    }
+
+    .btn-emerald {
+      background: linear-gradient(180deg, #34d399 0%, #10b981 45%, #059669 100%);
+      color: var(--white);
+      border: 1px solid rgba(167, 243, 208, 0.45);
+      font-weight: 700;
+      box-shadow: var(--shadow-emerald-3d);
+    }
+
+    .btn-danger {
+      background: linear-gradient(180deg, #fb7185 0%, #e11d48 55%, #be123c 100%);
+      color: var(--white);
+      border: 1px solid rgba(254, 205, 211, 0.4);
+      box-shadow:
+        0 3px 0 #881337,
+        0 8px 18px rgba(225, 29, 72, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+
+    .btn-sm {
+      padding: 7px 12px;
+      font-size: 0.85rem;
+      border-radius: 11px;
+    }
+
+    /* ==========================================================================
+       3. TEAM SCORE STRIP
+       ========================================================================== */
+    .team-strip {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(180deg, rgba(17, 35, 74, 0.88) 0%, rgba(10, 20, 44, 0.92) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: var(--radius-md);
+      padding: 9px 16px;
+      box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .team-strip-label {
+      font-size: 0.84rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gold-300);
+      margin-right: 4px;
+    }
+
+    .team-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(180deg, rgba(8, 17, 38, 0.9), rgba(5, 10, 24, 0.95));
+      border: 1.5px solid rgba(255, 224, 71, 0.42);
+      border-radius: 999px;
+      padding: 5px 10px 5px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 8px rgba(255, 224, 71, 0.14);
+    }
+
+    .team-score-badge {
+      background: linear-gradient(180deg, #fff3b0, #ffd43b);
+      color: var(--navy-950);
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      border: 1px solid #fff9db;
+      box-shadow: 0 0 10px rgba(255, 224, 71, 0.6);
+    }
+
+    .team-step-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--white);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+    }
+
+    /* ==========================================================================
+       4. MAIN WORKSPACE GRID
+       ========================================================================== */
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.55fr) minmax(350px, 0.95fr);
+      gap: 16px;
+      flex: 1;
+      align-items: stretch;
+    }
+
+    @media (max-width: 1060px) {
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ==========================================================================
+       5. STUDIO STAGE CARD (LEFT / PRIMARY PRESENTATION AREA)
+       ========================================================================== */
+    .stage-card {
+      background: linear-gradient(165deg, rgba(20, 42, 88, 0.94) 0%, rgba(9, 19, 43, 0.98) 100%);
+      border: 1px solid rgba(251, 191, 36, 0.34);
+      border-radius: var(--radius-xl);
+      padding: 20px 24px 24px;
+      box-shadow: var(--shadow-studio);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stage-card::before {
+      content: "";
+      position: absolute;
+      inset: -35% -15% auto auto;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(96, 165, 250, 0.24), transparent 68%);
+      pointer-events: none;
+    }
+
+    .stage-card::after {
+      content: "";
+      position: absolute;
+      inset: auto auto -35% -15%;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.14), transparent 70%);
+      pointer-events: none;
+    }
+
+    .stage-hud {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      z-index: 1;
+    }
+
+    .hud-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hud-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 15px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(8, 17, 38, 0.88), rgba(5, 10, 24, 0.94));
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 4px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    .hud-pill.draw-number {
+      background: linear-gradient(180deg, rgba(251, 191, 36, 0.28), rgba(217, 119, 6, 0.22));
+      border-color: rgba(251, 191, 36, 0.65);
+      color: var(--gold-300);
+      font-weight: 700;
+      font-size: 1.04rem;
+      letter-spacing: 0.04em;
+      box-shadow: 0 0 18px rgba(251, 191, 36, 0.22);
+    }
+
+    .hud-pill.paused-badge {
+      background: rgba(244, 63, 94, 0.25);
+      border-color: rgba(244, 63, 94, 0.65);
+      color: #fda4af;
+      font-weight: 700;
+      animation: pulseBadge 1.4s infinite;
+    }
+
+    @keyframes pulseBadge {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.55; }
+    }
+
+    /* Timer Progress Bar */
+    .timer-bar-wrap {
+      width: 100%;
+      height: 8px;
+      background: rgba(5, 10, 24, 0.75);
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 1;
+    }
+
+    .timer-bar-fill {
+      height: 100%;
+      width: 100%;
+      background: linear-gradient(90deg, var(--emerald-500), var(--gold-400));
+      transition: width 0.25s linear;
+    }
+
+    /* Mode B: Studio Lightbox Presentation Stage */
+    .presentation-stage {
+      flex: 1;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(59, 130, 246, 0.34) 0%, rgba(12, 25, 54, 0.85) 60%, rgba(5, 10, 24, 0.94) 100%);
+      border: 2px solid rgba(251, 191, 36, 0.45);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      position: relative;
+      z-index: 1;
+      box-shadow:
+        inset 0 2px 1px rgba(255, 255, 255, 0.18),
+        inset 0 0 60px rgba(0, 0, 0, 0.6),
+        0 18px 38px -10px rgba(0, 0, 0, 0.65);
+    }
+
+    .presentation-stage::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border-radius: calc(var(--radius-lg) - 6px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      pointer-events: none;
+    }
+
+    .review-banner {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(180deg, #fde047, #f59e0b);
+      color: var(--navy-950);
+      font-weight: 700;
+      font-size: 0.82rem;
+      padding: 5px 16px;
+      border-radius: 999px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 6px 16px rgba(245, 158, 11, 0.45);
+    }
+
+    .category-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 18px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(59, 130, 246, 0.4), rgba(29, 78, 216, 0.3));
+      border: 1px solid rgba(147, 197, 253, 0.48);
+      color: #dbeafe;
+      font-size: 0.96rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    .stage-visual {
+      font-size: clamp(3.6rem, 6.8vw, 5.4rem);
+      line-height: 1.05;
+      margin-bottom: 12px;
+      filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.5));
+    }
+
+    .stage-visual img {
+      max-height: 128px;
+      max-width: 210px;
+      border-radius: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.35);
+      object-fit: cover;
+      background: var(--white);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    .stage-word {
+      font-size: clamp(2.8rem, 6.4vw, 5.5rem);
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.005em;
+      line-height: 1.08;
+      text-shadow:
+        0 4px 0 rgba(8, 17, 38, 0.8),
+        0 14px 36px rgba(0, 0, 0, 0.65),
+        0 0 40px rgba(251, 191, 36, 0.25);
+      word-break: break-word;
+      max-width: 100%;
+    }
+
+    .stage-subtext {
+      margin-top: 14px;
+      font-size: 1rem;
+      color: var(--slate-300);
+      font-weight: 500;
+    }
+
+    .word-pop {
+      animation: wordReveal 0.44s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .stage-word.word-cycling {
+      color: var(--gold-300);
+      transform: scale(0.95);
+      filter: drop-shadow(0 0 18px rgba(251, 191, 36, 0.55));
+      transition: transform 0.05s ease, color 0.05s ease;
+    }
+
+    .stage-visual.visual-cycling {
+      transform: scale(0.9) rotate(-4deg);
+      transition: transform 0.05s ease;
+    }
+
+    @keyframes wordReveal {
+      0% {
+        opacity: 0;
+        transform: scale(0.76) translateY(16px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
+    /* Mode A: Tactile 3D Digital Bingo Board (1-Player & 2-Player Touch Optimized) */
+    .digital-board-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      z-index: 1;
+      touch-action: manipulation;
+    }
+
+    .digital-call-strip {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: linear-gradient(180deg, rgba(8, 17, 38, 0.88), rgba(5, 10, 24, 0.94));
+      border: 1px solid rgba(251, 191, 36, 0.45);
+      border-radius: 18px;
+      padding: 12px 18px;
+      box-shadow: 0 10px 22px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    }
+
+    .digital-call-word {
+      font-size: clamp(1.35rem, 2.7vw, 2rem);
+      font-weight: 700;
+      color: var(--gold-300);
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .digital-toolbar-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .player-count-toggle {
+      display: inline-flex;
+      background: rgba(5, 10, 24, 0.9);
+      padding: 4px;
+      border-radius: 13px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6);
+    }
+
+    .player-toggle-btn {
+      padding: 6px 12px;
+      border-radius: 10px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--slate-300);
+      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      touch-action: manipulation;
+    }
+
+    .player-toggle-btn.active {
+      background: linear-gradient(180deg, #fde047 0%, #f59e0b 100%);
+      color: var(--navy-950);
+      box-shadow: 0 2px 8px rgba(245, 158, 11, 0.45);
+    }
+
+    .digital-boards-container {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      justify-items: center;
+      align-items: stretch;
+    }
+
+    .digital-boards-container.two-players {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      justify-items: stretch;
+    }
+
+    @media (max-width: 780px) {
+      .digital-boards-container.two-players {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .player-board-panel {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      background: rgba(5, 10, 24, 0.46);
+      border: 1.5px solid rgba(147, 197, 253, 0.25);
+      border-radius: 22px;
+      padding: 12px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    }
+
+    .player-board-panel.player-2 {
+      border-color: rgba(251, 191, 36, 0.35);
+    }
+
+    .player-board-panel.has-bingo {
+      border-color: var(--emerald-500);
+      box-shadow: 0 0 24px rgba(16, 185, 129, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    }
+
+    .player-board-header {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 2px 4px;
+    }
+
+    .player-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .player-badge.p1 {
+      background: linear-gradient(180deg, rgba(59, 130, 246, 0.38), rgba(29, 78, 216, 0.32));
+      border: 1px solid rgba(147, 197, 253, 0.5);
+      color: #dbeafe;
+    }
+
+    .player-badge.p2 {
+      background: linear-gradient(180deg, rgba(251, 191, 36, 0.34), rgba(217, 119, 6, 0.28));
+      border: 1px solid rgba(253, 224, 71, 0.55);
+      color: var(--gold-200);
+    }
+
+    .player-status-pill {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--slate-300);
+    }
+
+    .player-status-pill.won {
+      color: #6ee7b7;
+      text-shadow: 0 0 10px rgba(16, 185, 129, 0.6);
+    }
+
+    .bingo-grid {
+      display: grid;
+      gap: 12px;
+      width: 100%;
+      max-width: 640px;
+      aspect-ratio: 1 / 1;
+      touch-action: manipulation;
+    }
+
+    .digital-boards-container.two-players .bingo-grid {
+      gap: 8px;
+      max-width: 100%;
+    }
+
+    .bingo-cell {
+      background: linear-gradient(180deg, #1d3f82 0%, #112654 100%);
+      border: 2px solid rgba(147, 197, 253, 0.35);
+      border-radius: 18px;
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 10px;
+      font-weight: 600;
+      box-shadow:
+        0 5px 0 #071129,
+        0 10px 20px rgba(0, 0, 0, 0.45),
+        inset 0 2px 1px rgba(255, 255, 255, 0.25);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .digital-boards-container.two-players .bingo-cell {
+      border-radius: 14px;
+      padding: 6px 5px;
+    }
+
+    .bingo-cell:hover {
+      border-color: var(--gold-400);
+      transform: translateY(-2px);
+      filter: brightness(1.06);
+    }
+
+    .bingo-cell:active {
+      transform: translateY(2px) scale(0.97);
+    }
+
+    .bingo-cell .cell-icon {
+      font-size: clamp(1.4rem, 2.8vw, 2.15rem);
+      margin-bottom: 5px;
+      filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
+      pointer-events: none;
+    }
+
+    .digital-boards-container.two-players .bingo-cell .cell-icon {
+      font-size: clamp(1.1rem, 2vw, 1.65rem);
+      margin-bottom: 3px;
+    }
+
+    .bingo-cell .cell-word {
+      font-size: clamp(0.92rem, 1.85vw, 1.38rem);
+      font-weight: 700;
+      line-height: 1.15;
+      word-break: break-word;
+      pointer-events: none;
+    }
+
+    .digital-boards-container.two-players .bingo-cell .cell-word {
+      font-size: clamp(0.78rem, 1.35vw, 1.08rem);
+    }
+
+    .bingo-cell.marked {
+      background: linear-gradient(180deg, #fde68a 0%, #fbbf24 38%, #d97706 100%);
+      border-color: #fef3c7;
+      color: var(--navy-950);
+      box-shadow:
+        0 4px 0 #92400e,
+        0 10px 24px rgba(245, 158, 11, 0.55),
+        inset 0 2px 2px rgba(255, 255, 255, 0.75);
+      transform: translateY(1px);
+    }
+
+    .bingo-cell.marked::after {
+      content: "★";
+      position: absolute;
+      top: 7px;
+      right: 9px;
+      font-size: 1rem;
+      color: #78350f;
+      pointer-events: none;
+    }
+
+    .digital-boards-container.two-players .bingo-cell.marked::after {
+      top: 4px;
+      right: 6px;
+      font-size: 0.82rem;
+    }
+
+    .bingo-cell.winning-cell {
+      background: linear-gradient(180deg, #6ee7b7 0%, #10b981 45%, #047857 100%);
+      color: var(--white);
+      border-color: #fde68a;
+      box-shadow:
+        0 4px 0 #064e3b,
+        0 0 26px rgba(16, 185, 129, 0.75),
+        inset 0 2px 2px rgba(255, 255, 255, 0.6);
+      animation: winPulse 0.85s infinite alternate;
+    }
+
+    @keyframes winPulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.045); }
+    }
+
+    /* Primary Studio Push-Button Dock */
+    .controls-dock {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 1;
+    }
+
+    .primary-actions {
+      display: grid;
+      grid-template-columns: 1.45fr 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 680px) {
+      .primary-actions {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .btn-draw-hero {
+      padding: 18px 24px;
+      border-radius: 18px;
+      font-size: clamp(1.15rem, 1.9vw, 1.42rem);
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      background: linear-gradient(180deg, #fde047 0%, #fbbf24 42%, #f59e0b 88%, #d97706 100%);
+      color: var(--navy-950);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow:
+        0 6px 0 #92400e,
+        0 16px 32px -6px rgba(245, 158, 11, 0.65),
+        inset 0 2px 2px rgba(255, 255, 255, 0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-draw-hero:hover:not(:disabled) {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    .btn-draw-hero:active:not(:disabled) {
+      transform: translateY(4px);
+      box-shadow:
+        0 2px 0 #92400e,
+        0 8px 18px -4px rgba(245, 158, 11, 0.5),
+        inset 0 2px 2px rgba(255, 255, 255, 0.7);
+    }
+
+    .btn-next-seq {
+      padding: 16px 18px;
+      border-radius: 18px;
+      font-size: 1.06rem;
+      font-weight: 700;
+      background: linear-gradient(180deg, #60a5fa 0%, #2563eb 48%, #1d4ed8 100%);
+      color: var(--white);
+      border: 1px solid rgba(191, 219, 254, 0.45);
+      box-shadow:
+        0 5px 0 #1e3a8a,
+        0 12px 24px -6px rgba(37, 99, 235, 0.55),
+        inset 0 2px 1px rgba(255, 255, 255, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-next-seq:active:not(:disabled) {
+      transform: translateY(3px);
+    }
+
+    .btn-verify-hero {
+      padding: 16px 18px;
+      border-radius: 18px;
+      font-size: 1.08rem;
+      font-weight: 700;
+      background: linear-gradient(180deg, #34d399 0%, #10b981 48%, #059669 100%);
+      color: var(--white);
+      border: 1px solid rgba(167, 243, 208, 0.5);
+      box-shadow:
+        0 5px 0 #065f46,
+        0 12px 24px -6px rgba(16, 185, 129, 0.55),
+        inset 0 2px 1px rgba(255, 255, 255, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-verify-hero:active:not(:disabled) {
+      transform: translateY(3px);
+    }
+
+    .secondary-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .secondary-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ==========================================================================
+       6. DRAW HISTORY & VERIFICATION SIDEBAR (RIGHT PANEL)
+       ========================================================================== */
+    .history-card {
+      background: linear-gradient(180deg, rgba(18, 38, 80, 0.94) 0%, rgba(9, 19, 43, 0.98) 100%);
+      border: 1px solid rgba(251, 191, 36, 0.32);
+      border-radius: var(--radius-xl);
+      padding: 18px;
+      box-shadow: var(--shadow-studio);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: calc(100vh - 135px);
+      min-height: 460px;
+    }
+
+    @media (max-width: 1060px) {
+      .history-card {
+        max-height: 620px;
+      }
+    }
+
+    .history-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .history-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .history-tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: rgba(5, 10, 24, 0.85);
+      padding: 4px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.6);
+    }
+
+    .history-tab {
+      padding: 8px 10px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--slate-300);
+      background: transparent;
+    }
+
+    .history-tab.active {
+      background: linear-gradient(180deg, #3b82f6, #1d4ed8);
+      color: var(--white);
+      box-shadow: 0 3px 10px rgba(37, 99, 235, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    }
+
+    .history-controls {
+      display: flex;
+      gap: 8px;
+    }
+
+    .search-input {
+      flex: 1;
+      background: rgba(5, 10, 24, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 12px;
+      padding: 9px 13px;
+      color: var(--white);
+      font-size: 0.92rem;
+      font-weight: 500;
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--gold-400);
+    }
+
+    .history-list {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-right: 4px;
+    }
+
+    .history-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .history-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.24);
+      border-radius: 999px;
+    }
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: linear-gradient(180deg, rgba(12, 25, 54, 0.85), rgba(6, 13, 30, 0.92));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 15px;
+      padding: 10px 13px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .history-item.latest {
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.24), rgba(37, 99, 235, 0.26));
+      border-color: rgba(251, 191, 36, 0.65);
+      box-shadow: 0 6px 18px rgba(245, 158, 11, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    }
+
+    .history-item-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .draw-seq-badge {
+      min-width: 46px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(59, 130, 246, 0.45), rgba(29, 78, 216, 0.35));
+      border: 1px solid rgba(147, 197, 253, 0.4);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .history-item.latest .draw-seq-badge {
+      background: linear-gradient(180deg, #fff3b0, #ffd43b);
+      color: var(--navy-950);
+      border: 1.5px solid #fff9db;
+      box-shadow: 0 0 10px rgba(255, 224, 71, 0.6);
+    }
+
+    .history-word-wrap {
+      min-width: 0;
+    }
+
+    .history-word {
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--white);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .history-meta {
+      font-size: 0.78rem;
+      color: var(--slate-400);
+      font-weight: 500;
+    }
+
+    .history-footer {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* ==========================================================================
+       7. STUDIO MODALS & OVERLAYS
+       ========================================================================== */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 7, 18, 0.84);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 1000;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-panel {
+      background: linear-gradient(170deg, #162e63 0%, #0a1632 100%);
+      border: 1px solid rgba(251, 191, 36, 0.42);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 860px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 32px 70px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      overflow: hidden;
+    }
+
+    .modal-panel.modal-sm {
+      max-width: 500px;
+    }
+
+    .modal-header {
+      padding: 16px 22px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(5, 10, 24, 0.35);
+    }
+
+    .modal-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-body {
+      padding: 18px 22px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .modal-footer {
+      padding: 14px 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      background: rgba(5, 10, 24, 0.55);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-label {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--gold-300);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-control {
+      background: rgba(5, 10, 24, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 10px 13px;
+      color: var(--white);
+      font-size: 0.96rem;
+      font-weight: 500;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--gold-400);
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(5, 10, 24, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 11px 15px;
+    }
+
+    /* Vocabulary Table inside Settings & JSON Preview */
+    .vocab-editor-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 290px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .vocab-row {
+      display: grid;
+      grid-template-columns: 36px 1.4fr 1fr 0.7fr 38px;
+      gap: 8px;
+      align-items: center;
+      background: rgba(5, 10, 24, 0.72);
+      padding: 7px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 640px) {
+      .vocab-row {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .vocab-row input {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 9px;
+      padding: 6px 10px;
+      color: var(--white);
+      font-size: 0.9rem;
+      width: 100%;
+    }
+
+    /* Verification Checklist Pills */
+    .verify-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+      gap: 8px;
+      max-height: 310px;
+      overflow-y: auto;
+    }
+
+    .verify-chip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 13px;
+      border-radius: 13px;
+      background: rgba(5, 10, 24, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: var(--white);
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .verify-chip.checked {
+      background: rgba(16, 185, 129, 0.28);
+      border-color: var(--emerald-500);
+      color: #6ee7b7;
+    }
+
+    /* Winner Overlay */
+    .winner-banner {
+      text-align: center;
+      padding: 30px 22px;
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.32), rgba(8, 17, 38, 0.96));
+      border: 2px solid var(--gold-400);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 0 40px rgba(245, 158, 11, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+
+    .winner-trophy {
+      font-size: 4.8rem;
+      margin-bottom: 8px;
+      animation: bounceTrophy 0.9s infinite alternate;
+    }
+
+    @keyframes bounceTrophy {
+      from { transform: translateY(0) scale(1); }
+      to { transform: translateY(-10px) scale(1.08); }
+    }
+
+    .winner-headline {
+      font-size: clamp(2.1rem, 5.2vw, 3.6rem);
+      font-weight: 700;
+      color: var(--gold-300);
+      text-shadow: 0 4px 20px rgba(245, 158, 11, 0.6);
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: linear-gradient(180deg, rgba(17, 35, 74, 0.98), rgba(8, 17, 38, 0.98));
+      border: 1px solid var(--gold-400);
+      color: var(--white);
+      padding: 11px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      animation: toastIn 0.22s ease;
+    }
+
+    @keyframes toastIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Fullscreen & Theater ViewBoard Expansion */
+    body.theater-fullscreen {
+      overflow: hidden;
+    }
+
+    body.theater-fullscreen .app-shell,
+    :fullscreen .app-shell {
+      max-width: 100%;
+      min-height: 100vh;
+      padding: 12px 20px 16px;
+    }
+
+    body.theater-fullscreen .history-card,
+    :fullscreen .history-card {
+      max-height: calc(100vh - 125px);
+    }
+
+    /* Confetti Canvas */
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1500;
+    }
+
+    /* ==========================================================================
+       8. PRINT STYLESHEET (CLEAN CLASSROOM VERIFICATION SHEET)
+       ========================================================================== */
+    #printSheet {
+      display: none;
+    }
+
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+      .app-shell, .modal-backdrop, #confettiCanvas, .toast-container {
+        display: none !important;
+      }
+      #printSheet {
+        display: block !important;
+        padding: 24px;
+        font-family: Arial, sans-serif;
+        color: #000000;
+      }
+      #printSheet h1 {
+        font-size: 22pt;
+        margin-bottom: 6px;
+        border-bottom: 2px solid #000;
+        padding-bottom: 6px;
+      }
+      #printSheet .print-meta {
+        font-size: 11pt;
+        margin-bottom: 16px;
+        color: #333;
+      }
+      #printSheet table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 12pt;
+      }
+      #printSheet th, #printSheet td {
+        border: 1px solid #444;
+        padding: 8px 10px;
+        text-align: left;
+      }
+      #printSheet th {
+        background: #eee;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confettiCanvas"></canvas>
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Printable Verification Sheet -->
+  <div id="printSheet"></div>
+
+  <div class="app-shell">
+    <!-- ======================================================================
+         TOP NAVIGATION BAR
+         ====================================================================== -->
+    <header class="topbar">
+      <div class="brand-group">
+        <div class="brand-badge" aria-hidden="true">B</div>
+        <div class="title-stack">
+          <div class="title-eyebrow">
+            <span>TAIWAN ELEMENTARY ESL • GRADES 3–6</span>
+            <span id="presetBadge" style="color: #93c5fd;">• WEATHER & SEASONS</span>
+          </div>
+          <h1 class="game-title" id="displayGameTitle">Weather & Seasons Bingo</h1>
+        </div>
+      </div>
+
+      <!-- Mode Switcher -->
+      <div class="mode-switcher" role="tablist" aria-label="Game Mode">
+        <button class="mode-btn active" id="btnModePhysical" role="tab" aria-selected="true" title="Teacher Draw Mode for Physical Student Cards">
+          <span>🎙️</span> Physical Card Mode
+        </button>
+        <button class="mode-btn" id="btnModeDigital" role="tab" aria-selected="false" title="Interactive On-Screen Bingo Card">
+          <span>📱</span> Digital Bingo Mode
+        </button>
+      </div>
+
+      <!-- Top Utility Toolbar -->
+      <div class="toolbar-actions">
+        <button class="btn btn-sm" id="btnMusicToggle" title="Toggle Background Music">
+          <span id="musicIcon">🎵</span> <span id="musicLabel">Music ON</span>
+        </button>
+        <button class="btn btn-sm" id="btnSoundToggle" title="Toggle Sound Effects">
+          <span id="soundIcon">🔊</span> <span id="soundLabel">Sound ON</span>
+        </button>
+        <button class="btn btn-sm" id="btnTriggerImport" title="Import Vocabulary JSON">
+          <span>📥</span> Import JSON
+        </button>
+        <button class="btn btn-sm" id="btnExportJson" title="Export Vocabulary JSON">
+          <span>📤</span> Export JSON
+        </button>
+        <button class="btn btn-sm btn-royal" id="btnOpenSettings" title="Game Settings & Vocabulary Editor">
+          <span>⚙️</span> Settings
+        </button>
+        <button class="btn btn-sm" id="btnOpenGuide" title="Teacher Instructions">
+          <span>❓</span> Guide
+        </button>
+        <button class="btn btn-sm" id="btnFullscreen" title="Toggle Fullscreen for ViewBoard">
+          <span>⛶</span> Fullscreen
+        </button>
+        <input type="file" id="jsonFileInput" accept=".json,application/json" style="display:none;" />
+      </div>
+    </header>
+
+    <!-- ======================================================================
+         OPTIONAL CLASSROOM TEAM SCOREBOARD STRIP
+         ====================================================================== -->
+    <section class="team-strip" id="teamStrip" aria-label="Team Scores"></section>
+
+    <!-- ======================================================================
+         MAIN WORKSPACE (STAGE LEFT + DRAW HISTORY RIGHT)
+         ====================================================================== -->
+    <main class="workspace">
+      <!-- LEFT STAGE CARD -->
+      <section class="stage-card" aria-label="Bingo Presentation Stage">
+        <!-- HUD Row -->
+        <div class="stage-hud">
+          <div class="hud-group">
+            <div class="hud-pill draw-number" id="hudDrawBadge">DRAW #00</div>
+            <div class="hud-pill" id="hudRemainingBadge">📦 Remaining: 16</div>
+            <div class="hud-pill" id="hudDrawnBadge">✅ Drawn: 0</div>
+          </div>
+          <div class="hud-group">
+            <div class="hud-pill paused-badge" id="hudPausedBadge" style="display:none;">⏸️ PAUSED</div>
+            <div class="hud-pill" id="hudTimerBadge" style="display:none;">⏱️ 00s</div>
+            <button class="btn btn-sm" id="btnStageFullscreen" title="Toggle ViewBoard Fullscreen (F)">
+              <span>⛶</span> <span id="stageFullscreenLabel">Fullscreen</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Optional Turn Timer Progress Bar -->
+        <div class="timer-bar-wrap" id="timerBarWrap" style="display:none;">
+          <div class="timer-bar-fill" id="timerBarFill"></div>
+        </div>
+
+        <!-- MODE B: PHYSICAL CARD TEACHER DRAW STAGE -->
+        <div class="presentation-stage" id="physicalStage">
+          <div class="review-banner" id="reviewBanner" style="display:none;">Reviewing Previous Draw</div>
+          <div class="category-chip" id="stageCategory">READY TO PLAY</div>
+          <div class="stage-visual" id="stageVisual">🎲</div>
+          <div class="stage-word" id="stageWord">Press RANDOM DRAW</div>
+          <div class="stage-subtext" id="stageSubtext">Students mark their physical Bingo cards</div>
+        </div>
+
+        <!-- MODE A: INTERACTIVE DIGITAL BINGO BOARD STAGE (1P & 2P) -->
+        <div class="digital-board-wrap" id="digitalStage" style="display:none;">
+          <div class="digital-call-strip">
+            <div>
+              <div style="font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--slate-400);">Current Called Word</div>
+              <div class="digital-call-word" id="digitalCurrentWord">Press RANDOM DRAW to call first word</div>
+            </div>
+            <div class="digital-toolbar-group">
+              <div class="player-count-toggle" role="group" aria-label="Digital Bingo Player Count">
+                <button class="player-toggle-btn active" id="btnDigital1P" type="button">👤 1 Player</button>
+                <button class="player-toggle-btn" id="btnDigital2P" type="button">👥 2 Players</button>
+              </div>
+              <button class="btn btn-sm btn-royal" id="btnNewDigitalCard" type="button">🔀 New Cards</button>
+            </div>
+          </div>
+          <div class="digital-boards-container" id="digitalBoardsContainer"></div>
+        </div>
+
+        <!-- STUDIO CONTROL DOCK -->
+        <div class="controls-dock">
+          <div class="primary-actions">
+            <button class="btn-draw-hero" id="btnRandomDraw">
+              <span>🎲</span> RANDOM DRAW
+            </button>
+            <button class="btn-next-seq" id="btnNextItem" title="Draw Next Item in Sequence">
+              <span>⏭️</span> NEXT ITEM
+            </button>
+            <button class="btn-verify-hero" id="btnVerifyBingo" title="Pause & Verify Student Bingo (V)">
+              <span>🏆</span> BINGO! VERIFY
+            </button>
+          </div>
+
+          <div class="secondary-actions">
+            <div class="secondary-group">
+              <button class="btn btn-sm" id="btnPrevItem" title="View Previous Drawn Item (←)">
+                <span>⏮️</span> Previous Item
+              </button>
+              <button class="btn btn-sm btn-gold" id="btnReturnLatest" style="display:none;" title="Return to Latest Drawn Item">
+                <span>⏩</span> Latest Draw
+              </button>
+              <button class="btn btn-sm" id="btnShowDrawnTab" title="Show All Drawn Items">
+                <span>✅</span> All Drawn
+              </button>
+              <button class="btn btn-sm" id="btnShowRemainingTab" title="Show Remaining Items">
+                <span>📦</span> Remaining
+              </button>
+            </div>
+
+            <div class="secondary-group">
+              <button class="btn btn-sm" id="btnPauseToggle" title="Pause or Resume Timer (P)">
+                <span>⏸️</span> Pause
+              </button>
+              <button class="btn btn-sm btn-danger" id="btnResetGame" title="Reset Current Round">
+                <span>🔄</span> Reset Draw
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT PANEL: COMPLETE DRAW HISTORY & VERIFICATION -->
+      <aside class="history-card" aria-label="Draw History and Verification">
+        <div class="history-header">
+          <h2 class="history-title">
+            <span>📜</span> Draw History
+          </h2>
+          <span style="font-size:0.82rem; font-weight:800; color:var(--gold-300);" id="historyCountSummary">0 / 16</span>
+        </div>
+
+        <!-- Tabs: Drawn vs Remaining -->
+        <div class="history-tabs">
+          <button class="history-tab active" id="tabDrawnItems">Drawn Items (<span id="tabDrawnCount">0</span>)</button>
+          <button class="history-tab" id="tabRemainingItems">Remaining (<span id="tabRemainingCount">16</span>)</button>
+        </div>
+
+        <!-- Search & Sort Controls -->
+        <div class="history-controls">
+          <input type="search" class="search-input" id="historySearchInput" placeholder="Search word or category..." aria-label="Search vocabulary" />
+          <button class="btn btn-sm" id="btnToggleSort" title="Toggle Sort Order">
+            <span id="sortLabel">Newest ↓</span>
+          </button>
+        </div>
+
+        <!-- Scrollable List -->
+        <div class="history-list" id="historyList"></div>
+
+        <!-- Export / Copy / Print Toolbar -->
+        <div class="history-footer">
+          <button class="btn btn-sm" id="btnCopyHistory" title="Copy drawn items to clipboard">
+            <span>📋</span> Copy
+          </button>
+          <button class="btn btn-sm" id="btnDownloadTxt" title="Download TXT list">
+            <span>📄</span> TXT
+          </button>
+          <button class="btn btn-sm" id="btnDownloadCsv" title="Download CSV spreadsheet">
+            <span>📊</span> CSV
+          </button>
+          <button class="btn btn-sm" id="btnPrintHistory" title="Print clean verification sheet">
+            <span>🖨️</span> Print
+          </button>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 1: TEACHER SETTINGS & VOCABULARY EDITOR
+       ======================================================================== -->
+  <div class="modal-backdrop" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsModalTitle">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h2 class="modal-title" id="settingsModalTitle">⚙️ Classroom Bingo Settings & Vocabulary</h2>
+        <button class="btn btn-sm" data-close-modal="settingsModal">✕ Close</button>
+      </div>
+      <div class="modal-body">
+        <!-- Quick Taiwan ESL Presets -->
+        <div class="form-field">
+          <label class="form-label">Taiwan Elementary ESL Presets (Grades 3–6)</label>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;" id="presetButtonsContainer"></div>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label" for="inputGameTitle">Game Title</label>
+            <input type="text" id="inputGameTitle" class="form-control" placeholder="e.g., Grade 4 Weather Bingo" />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="selectGridSize">Bingo Grid Size</label>
+            <select id="selectGridSize" class="form-control">
+              <option value="3">3 × 3 (9 squares — Grade 3 Quick)</option>
+              <option value="4">4 × 4 (16 squares — Grade 4–5 Standard)</option>
+              <option value="5">5 × 5 (25 squares — Grade 5–6 Challenge)</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="selectTeamCount">Number of Teams / Groups</label>
+            <select id="selectTeamCount" class="form-control">
+              <option value="0">Hide Team Scoreboard</option>
+              <option value="2">2 Teams</option>
+              <option value="3">3 Teams</option>
+              <option value="4">4 Teams (Standard Classroom)</option>
+              <option value="6">6 Teams</option>
+              <option value="8">8 Teams</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="selectTimerSeconds">Turn Timer (Optional)</label>
+            <select id="selectTimerSeconds" class="form-control">
+              <option value="0">Timer OFF</option>
+              <option value="10">10 Seconds</option>
+              <option value="15">15 Seconds</option>
+              <option value="20">20 Seconds</option>
+              <option value="30">30 Seconds</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="toggle-row">
+            <div>
+              <div style="font-weight:800;">FREE Center Space</div>
+              <div style="font-size:0.78rem; color:var(--slate-400);">Adds a center FREE star on 3×3 or 5×5 cards</div>
+            </div>
+            <input type="checkbox" id="checkFreeSpace" style="width:20px; height:20px; accent-color:var(--gold-500);" />
+          </div>
+          <div class="toggle-row">
+            <div>
+              <div style="font-weight:800;">Randomize Draw Order</div>
+              <div style="font-size:0.78rem; color:var(--slate-400);">Pick randomly from remaining pool</div>
+            </div>
+            <input type="checkbox" id="checkRandomize" style="width:20px; height:20px; accent-color:var(--gold-500);" />
+          </div>
+          <div class="toggle-row">
+            <div>
+              <div style="font-weight:800;">Background Music (Marimba Loop)</div>
+              <div style="font-size:0.78rem; color:var(--slate-400);">Upbeat xylophone/marimba game-show loop</div>
+            </div>
+            <input type="checkbox" id="checkMusicEnabled" style="width:20px; height:20px; accent-color:var(--gold-500);" />
+          </div>
+        </div>
+
+        <!-- JSON Quick Bar inside Settings -->
+        <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px; background:rgba(37,99,235,0.16); padding:10px 14px; border-radius:12px; border:1px solid rgba(147,197,253,0.28);">
+          <span style="font-size:0.88rem; font-weight:700;">📁 Manage Vocabulary Files:</span>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <button class="btn btn-sm btn-royal" id="btnSettingsImportJson">📥 Import JSON</button>
+            <button class="btn btn-sm" id="btnSettingsExportJson">📤 Export JSON</button>
+            <button class="btn btn-sm" id="btnDownloadSampleJson">⬇️ Download Sample JSON</button>
+          </div>
+        </div>
+
+        <!-- Vocabulary List Editor -->
+        <div class="form-field">
+          <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px;">
+            <label class="form-label">Vocabulary Items (<span id="vocabEditorCount">0</span> items)</label>
+            <div style="display:flex; gap:8px;">
+              <button class="btn btn-sm btn-emerald" id="btnAddVocabRow">+ Add Word</button>
+              <button class="btn btn-sm" id="btnToggleBulkPaste">📝 Bulk Paste Words</button>
+            </div>
+          </div>
+
+          <div id="bulkPasteBox" style="display:none; background:rgba(6,14,26,0.8); padding:12px; border-radius:12px; border:1px solid rgba(255,255,255,0.15);">
+            <div style="font-size:0.82rem; color:var(--slate-300); margin-bottom:6px;">Enter one word per line (or comma-separated):</div>
+            <textarea id="bulkPasteTextarea" rows="4" class="form-control" style="width:100%;" placeholder="Sunny&#10;Rainy&#10;Cloudy&#10;Windy"></textarea>
+            <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:8px;">
+              <button class="btn btn-sm btn-royal" id="btnApplyBulkPaste">Append Words</button>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 36px 1.4fr 1fr 0.7fr 38px; gap:8px; padding:0 10px; font-size:0.75rem; font-weight:800; color:var(--slate-400);">
+            <span>#</span>
+            <span>English Word</span>
+            <span>Category</span>
+            <span>Emoji / URL</span>
+            <span></span>
+          </div>
+          <div class="vocab-editor-list" id="vocabEditorList"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-close-modal="settingsModal">Cancel</button>
+        <button class="btn btn-gold" id="btnSaveSettings">💾 Save & Apply Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 2: JSON IMPORT PREVIEW & EDIT MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="jsonPreviewModal" role="dialog" aria-modal="true" aria-labelledby="jsonPreviewTitle">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h2 class="modal-title" id="jsonPreviewTitle">📥 Preview & Edit Imported JSON</h2>
+        <button class="btn btn-sm" data-close-modal="jsonPreviewModal">✕ Cancel</button>
+      </div>
+      <div class="modal-body">
+        <div id="jsonImportMetaBanner" style="background:rgba(16,185,129,0.16); border:1px solid rgba(16,185,129,0.45); padding:12px 14px; border-radius:12px; font-size:0.9rem;"></div>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span class="form-label">Review, Edit, Add, or Delete Items Before Starting:</span>
+          <button class="btn btn-sm btn-emerald" id="btnAddPreviewItem">+ Add Item</button>
+        </div>
+        <div class="vocab-editor-list" id="jsonPreviewList"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-close-modal="jsonPreviewModal">Cancel</button>
+        <button class="btn btn-gold" id="btnConfirmJsonImport">✅ Load into Classroom Game</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 3: TEACHER BINGO VERIFICATION MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="verifyModal" role="dialog" aria-modal="true" aria-labelledby="verifyModalTitle">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h2 class="modal-title" id="verifyModalTitle">🏆 Verify Student Bingo Claim</h2>
+        <button class="btn btn-sm" id="btnCloseVerifyModal">✕ Resume Game</button>
+      </div>
+      <div class="modal-body">
+        <div style="background:rgba(245,158,11,0.16); border:1px solid rgba(251,191,36,0.45); border-radius:12px; padding:12px 14px; font-size:0.92rem;">
+          <strong>Teacher Verification Check:</strong> Timer is paused. Tap the words on the student's physical Bingo card below to verify all squares were actually drawn!
+        </div>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label class="form-label" for="verifySearchInput">Quick Search Drawn Words</label>
+            <input type="search" id="verifySearchInput" class="search-input" placeholder="Type word student calls out..." />
+          </div>
+          <div class="form-field">
+            <label class="form-label" for="verifyWinnerTeam">Winning Student / Team (Optional)</label>
+            <input type="text" id="verifyWinnerTeam" class="form-control" placeholder="e.g., Team 2 or Kevin" />
+          </div>
+        </div>
+
+        <div style="font-size:0.85rem; font-weight:800; color:var(--slate-300);">
+          Total Drawn Words (<span id="verifyDrawnTotal">0</span>) — Tap to check off student's line:
+        </div>
+        <div class="verify-grid" id="verifyChecklistGrid"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-danger" id="btnRejectBingo">❌ False Alarm — Resume Game</button>
+        <button class="btn btn-gold" id="btnConfirmBingoWinner">🎉 CONFIRM WINNER!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 4: WINNER CELEBRATION MODAL
+       ======================================================================== -->
+  <div class="modal-backdrop" id="winnerModal" role="dialog" aria-modal="true">
+    <div class="modal-panel modal-sm">
+      <div class="modal-body">
+        <div class="winner-banner">
+          <div class="winner-trophy">🏆</div>
+          <div class="winner-headline">BINGO WINNER!</div>
+          <div id="winnerSubHeadline" style="font-size:1.35rem; font-weight:800; color:var(--white); margin-top:8px;">Congratulations!</div>
+          <div id="winnerPatternLabel" style="font-size:0.95rem; color:var(--gold-300); margin-top:6px;">Verified Classroom Champion</div>
+        </div>
+      </div>
+      <div class="modal-footer" style="justify-content:center;">
+        <button class="btn btn-royal" id="btnWinnerContinue">Continue Current Round</button>
+        <button class="btn btn-gold" id="btnWinnerNewRound">🔄 Start New Round</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 5: RESET CONFIRMATION & ERROR DIALOGS
+       ======================================================================== -->
+  <div class="modal-backdrop" id="confirmResetModal" role="dialog" aria-modal="true">
+    <div class="modal-panel modal-sm">
+      <div class="modal-header">
+        <h2 class="modal-title">⚠️ Reset Draw History?</h2>
+      </div>
+      <div class="modal-body">
+        <p style="font-size:1rem; color:var(--slate-200);">
+          Are you sure you want to reset the current Bingo draw? All <strong id="resetCountWarn">0</strong> drawn items will return to the pool and history will be cleared.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn" data-close-modal="confirmResetModal">Cancel</button>
+        <button class="btn btn-danger" id="btnConfirmResetAction">Yes, Reset Game</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="errorModal" role="dialog" aria-modal="true">
+    <div class="modal-panel modal-sm">
+      <div class="modal-header">
+        <h2 class="modal-title" style="color:#fda4af;">⚠️ File Import Error</h2>
+      </div>
+      <div class="modal-body">
+        <p id="errorModalMessage" style="font-size:0.98rem; color:var(--white); line-height:1.5;"></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-gold" data-close-modal="errorModal">Got It</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MODAL 6: TEACHER QUICK-START GUIDE & SHORTCUTS
+       ======================================================================== -->
+  <div class="modal-backdrop" id="guideModal" role="dialog" aria-modal="true">
+    <div class="modal-panel">
+      <div class="modal-header">
+        <h2 class="modal-title">📘 Teacher Classroom Guide & ViewBoard Shortcuts</h2>
+        <button class="btn btn-sm" data-close-modal="guideModal">✕ Close</button>
+      </div>
+      <div class="modal-body" style="font-size:0.95rem; line-height:1.6; color:var(--slate-200);">
+        <div style="background:rgba(37,99,235,0.18); border:1px solid rgba(147,197,253,0.3); padding:14px; border-radius:12px;">
+          <strong style="color:var(--gold-300);">1. Physical Card Mode (Default for Classroom Printouts):</strong><br/>
+          Students hold printed Bingo cards at their desks. Click <strong>RANDOM DRAW</strong> (or press <strong>Spacebar</strong>) to announce one word at a time on your ViewBoard. Every word is automatically logged with its draw number and timestamp so duplicates never happen.
+        </div>
+        <div style="background:rgba(245,158,11,0.14); border:1px solid rgba(251,191,36,0.3); padding:14px; border-radius:12px;">
+          <strong style="color:var(--gold-300);">2. Verifying a Student's "BINGO!" Call:</strong><br/>
+          Click <strong>BINGO! VERIFY</strong> (or press <strong>V</strong>). The timer pauses automatically and opens a searchable checklist of all drawn words so you can confirm the student's physical card before celebrating with confetti!
+        </div>
+        <div style="background:rgba(16,185,129,0.14); border:1px solid rgba(16,185,129,0.3); padding:14px; border-radius:12px;">
+          <strong style="color:var(--gold-300);">3. Saving & Sharing Lesson Lists (JSON):</strong><br/>
+          Use <strong>Export JSON</strong> to save your custom vocabulary list to your USB drive or Google Drive, and <strong>Import JSON</strong> next semester to load it in seconds. All progress also auto-saves in your browser.
+        </div>
+        <div>
+          <strong style="color:var(--gold-300);">Keyboard Shortcuts (Desktop / Wireless Presenter Clicker):</strong>
+          <ul style="margin-left:20px; margin-top:6px;">
+            <li><strong>Spacebar</strong> or <strong>Right Arrow (→)</strong>: Draw Next Item</li>
+            <li><strong>Left Arrow (←)</strong>: View Previous Drawn Item</li>
+            <li><strong>P</strong>: Pause / Resume Timer</li>
+            <li><strong>V</strong>: Open Bingo Verification Panel</li>
+            <li><strong>F</strong>: Toggle Fullscreen ViewBoard Mode</li>
+          </ul>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-gold" data-close-modal="guideModal">Ready to Teach!</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       JAVASCRIPT APPLICATION CORE
+       ======================================================================== -->
+  <script>
+    (function () {
+      "use strict";
+
+      /* ----------------------------------------------------------------------
+         1. PRELOADED TAIWAN ELEMENTARY ESL PRESETS (GRADES 3–6)
+         ---------------------------------------------------------------------- */
+      const ESL_PRESETS = {
+        weather: {
+          gameTitle: "Weather & Seasons Bingo",
+          gridSize: 4,
+          freeSpace: false,
+          items: [
+            { id: 1, word: "Sunny", category: "Weather", image: "☀️" },
+            { id: 2, word: "Rainy", category: "Weather", image: "🌧️" },
+            { id: 3, word: "Cloudy", category: "Weather", image: "☁️" },
+            { id: 4, word: "Windy", category: "Weather", image: "💨" },
+            { id: 5, word: "Snowy", category: "Weather", image: "❄️" },
+            { id: 6, word: "Stormy", category: "Weather", image: "⛈️" },
+            { id: 7, word: "Foggy", category: "Weather", image: "🌫️" },
+            { id: 8, word: "Hot", category: "Temperature", image: "🥵" },
+            { id: 9, word: "Cold", category: "Temperature", image: "🥶" },
+            { id: 10, word: "Warm", category: "Temperature", image: "🌤️" },
+            { id: 11, word: "Cool", category: "Temperature", image: "🍃" },
+            { id: 12, word: "Spring", category: "Seasons", image: "🌸" },
+            { id: 13, word: "Summer", category: "Seasons", image: "🏖️" },
+            { id: 14, word: "Fall", category: "Seasons", image: "🍁" },
+            { id: 15, word: "Winter", category: "Seasons", image: "⛄" },
+            { id: 16, word: "Rainbow", category: "Sky", image: "🌈" },
+            { id: 17, word: "Typhoon", category: "Weather", image: "🌀" },
+            { id: 18, word: "Umbrella", category: "Gear", image: "☂️" }
+          ]
+        },
+        food: {
+          gameTitle: "Food & Night Market Bingo",
+          gridSize: 4,
+          freeSpace: false,
+          items: [
+            { id: 1, word: "Hamburger", category: "Food", image: "🍔" },
+            { id: 2, word: "Pizza", category: "Food", image: "🍕" },
+            { id: 3, word: "Noodles", category: "Food", image: "🍜" },
+            { id: 4, word: "Fried Rice", category: "Food", image: "🍛" },
+            { id: 5, word: "Dumplings", category: "Food", image: "🥟" },
+            { id: 6, word: "Sandwich", category: "Food", image: "🥪" },
+            { id: 7, word: "Ice Cream", category: "Dessert", image: "🍦" },
+            { id: 8, word: "Apple", category: "Fruit", image: "🍎" },
+            { id: 9, word: "Banana", category: "Fruit", image: "🍌" },
+            { id: 10, word: "Watermelon", category: "Fruit", image: "🍉" },
+            { id: 11, word: "Mango", category: "Fruit", image: "🥭" },
+            { id: 12, word: "Bubble Tea", category: "Drinks", image: "🧋" },
+            { id: 13, word: "Orange Juice", category: "Drinks", image: "🧃" },
+            { id: 14, word: "Milk", category: "Drinks", image: "🥛" },
+            { id: 15, word: "Cake", category: "Dessert", image: "🎂" },
+            { id: 16, word: "French Fries", category: "Snacks", image: "🍟" },
+            { id: 17, word: "Chicken", category: "Food", image: "🍗" },
+            { id: 18, word: "Salad", category: "Food", image: "🥗" }
+          ]
+        },
+        routines: {
+          gameTitle: "Daily Routines & Time Bingo",
+          gridSize: 4,
+          freeSpace: false,
+          items: [
+            { id: 1, word: "Get Up", category: "Morning", image: "⏰" },
+            { id: 2, word: "Brush My Teeth", category: "Morning", image: "🪥" },
+            { id: 3, word: "Wash My Face", category: "Morning", image: "🧼" },
+            { id: 4, word: "Eat Breakfast", category: "Morning", image: "🥞" },
+            { id: 5, word: "Go to School", category: "School", image: "🎒" },
+            { id: 6, word: "Have English Class", category: "School", image: "📚" },
+            { id: 7, word: "Eat Lunch", category: "Afternoon", image: "🍱" },
+            { id: 8, word: "Take a Nap", category: "Afternoon", image: "😴" },
+            { id: 9, word: "Go Home", category: "Afternoon", image: "🏠" },
+            { id: 10, word: "Do Homework", category: "Evening", image: "✏️" },
+            { id: 11, word: "Play Basketball", category: "Sports", image: "🏀" },
+            { id: 12, word: "Watch TV", category: "Evening", image: "📺" },
+            { id: 13, word: "Eat Dinner", category: "Evening", image: "🍽️" },
+            { id: 14, word: "Take a Shower", category: "Night", image: "🚿" },
+            { id: 15, word: "Read a Book", category: "Night", image: "📖" },
+            { id: 16, word: "Go to Bed", category: "Night", image: "🛏️" }
+          ]
+        },
+        animals: {
+          gameTitle: "Animals & Zoo Adventure Bingo",
+          gridSize: 4,
+          freeSpace: false,
+          items: [
+            { id: 1, word: "Lion", category: "Wild Animals", image: "🦁" },
+            { id: 2, word: "Tiger", category: "Wild Animals", image: "🐯" },
+            { id: 3, word: "Elephant", category: "Wild Animals", image: "🐘" },
+            { id: 4, word: "Monkey", category: "Wild Animals", image: "🐒" },
+            { id: 5, word: "Giraffe", category: "Wild Animals", image: "🦒" },
+            { id: 6, word: "Zebra", category: "Wild Animals", image: "🦓" },
+            { id: 7, word: "Bear", category: "Wild Animals", image: "🐻" },
+            { id: 8, word: "Penguin", category: "Birds", image: "🐧" },
+            { id: 9, word: "Dolphin", category: "Ocean", image: "🐬" },
+            { id: 10, word: "Shark", category: "Ocean", image: "🦈" },
+            { id: 11, word: "Turtle", category: "Ocean", image: "🐢" },
+            { id: 12, word: "Rabbit", category: "Pets", image: "🐰" },
+            { id: 13, word: "Puppy", category: "Pets", image: "🐶" },
+            { id: 14, word: "Kitten", category: "Pets", image: "🐱" },
+            { id: 15, word: "Frog", category: "Pond", image: "🐸" },
+            { id: 16, word: "Butterfly", category: "Insects", image: "🦋" }
+          ]
+        },
+        places: {
+          gameTitle: "Places & Transportation Bingo",
+          gridSize: 4,
+          freeSpace: false,
+          items: [
+            { id: 1, word: "Library", category: "Places", image: "🏛️" },
+            { id: 2, word: "Supermarket", category: "Places", image: "🏪" },
+            { id: 3, word: "Hospital", category: "Places", image: "🏥" },
+            { id: 4, word: "Post Office", category: "Places", image: "🏤" },
+            { id: 5, word: "Park", category: "Places", image: "🏞️" },
+            { id: 6, word: "Zoo", category: "Places", image: "🦁" },
+            { id: 7, word: "Museum", category: "Places", image: "🖼️" },
+            { id: 8, word: "Train Station", category: "Places", image: "🚉" },
+            { id: 9, word: "By MRT", category: "Transport", image: "🚇" },
+            { id: 10, word: "By Bus", category: "Transport", image: "🚌" },
+            { id: 11, word: "By Bike", category: "Transport", image: "🚲" },
+            { id: 12, word: "By Car", category: "Transport", image: "🚗" },
+            { id: 13, word: "By Scooter", category: "Transport", image: "🛵" },
+            { id: 14, word: "By High Speed Rail", category: "Transport", image: "🚄" },
+            { id: 15, word: "On Foot", category: "Transport", image: "🚶" },
+            { id: 16, word: "By Airplane", category: "Transport", image: "✈️" }
+          ]
+        }
+      };
+
+      /* ----------------------------------------------------------------------
+         2. APPLICATION STATE & STORAGE
+         ---------------------------------------------------------------------- */
+      const STORAGE_KEY = "tw_esl_classroom_bingo_v1";
+
+      let state = {
+        gameTitle: ESL_PRESETS.weather.gameTitle,
+        presetName: "Weather & Seasons",
+        mode: "physical", // "physical" | "digital"
+        digitalPlayers: 1, // 1 | 2
+        gridSize: 4,
+        freeSpace: false,
+        teamCount: 4,
+        teamScores: [0, 0, 0, 0],
+        timerSeconds: 0,
+        soundEnabled: true,
+        musicEnabled: true,
+        randomize: true,
+        items: JSON.parse(JSON.stringify(ESL_PRESETS.weather.items)),
+        drawnHistory: [], // [{ drawNumber, item, timestamp }]
+        inspectIndex: -1, // index in drawnHistory currently displayed (-1 = latest)
+        paused: false,
+        historyTab: "drawn", // "drawn" | "remaining"
+        sortOrder: "newest", // "newest" | "oldest" | "alpha"
+        digitalCards: [[], []], // [Player 1 board, Player 2 board]
+        digitalWonLines: [[], []] // [Player 1 winning indices, Player 2 winning indices]
+      };
+
+      let timerRemaining = 0;
+      let timerInterval = null;
+      let isDrawingAnimation = false;
+      let pendingJsonDraft = null;
+      let verifyCheckedIds = new Set();
+
+      /* ----------------------------------------------------------------------
+         3. WEB AUDIO API SOUND EFFECTS (ZERO EXTERNAL FILES)
+         ---------------------------------------------------------------------- */
+      const AudioFX = (() => {
+        let ctx = null;
+        function getCtx() {
+          if (!ctx) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (AudioCtx) ctx = new AudioCtx();
+          }
+          if (ctx && ctx.state === "suspended") ctx.resume();
+          return ctx;
+        }
+
+        function tone(freq, type, duration, delay = 0, vol = 0.16) {
+          if (!state.soundEnabled) return;
+          const c = getCtx();
+          if (!c) return;
+          const osc = c.createOscillator();
+          const gain = c.createGain();
+          osc.type = type;
+          osc.frequency.setValueAtTime(freq, c.currentTime + delay);
+          gain.gain.setValueAtTime(vol, c.currentTime + delay);
+          gain.gain.exponentialRampToValueAtTime(0.001, c.currentTime + delay + duration);
+          osc.connect(gain);
+          gain.connect(c.destination);
+          osc.start(c.currentTime + delay);
+          osc.stop(c.currentTime + delay + duration);
+        }
+
+        return {
+          draw() {
+            tone(523.25, "triangle", 0.14, 0, 0.18);
+            tone(659.25, "triangle", 0.14, 0.08, 0.18);
+            tone(783.99, "sine", 0.28, 0.16, 0.22);
+          },
+          mark() {
+            tone(660, "sine", 0.12, 0, 0.15);
+            tone(880, "sine", 0.16, 0.06, 0.15);
+          },
+          tick() {
+            tone(900, "sine", 0.05, 0, 0.06);
+          },
+          cycleTick(stepRatio = 0.5) {
+            tone(480 + stepRatio * 340, "triangle", 0.045, 0, 0.09);
+          },
+          winner() {
+            const notes = [523.25, 659.25, 783.99, 1046.5, 783.99, 1046.5];
+            const times = [0, 0.12, 0.24, 0.36, 0.54, 0.68];
+            notes.forEach((n, i) => tone(n, "triangle", 0.28, times[i], 0.22));
+            MusicEngine.duck(1450);
+          }
+        };
+      })();
+
+      /* ----------------------------------------------------------------------
+         3B. UPBEAT XYLOPHONE / MARIMBA GAME-SHOW BACKGROUND MUSIC ENGINE
+         ---------------------------------------------------------------------- */
+      const MusicEngine = (() => {
+        let ctx = null;
+        let masterGain = null;
+        let isPlaying = false;
+        let stepTimer = null;
+        let stepIndex = 0;
+        let duckTimeout = null;
+        let userInteracted = false;
+
+        // Upbeat C-Major / G-Mixolydian bouncy marimba & xylophone game-show groove (16-step loop)
+        const TEMPO_MS = 185; // ~162 BPM eighth-note pulse
+        const MELODY_NOTES = [
+          523.25, 0,      659.25, 783.99,  // C5, -, E5, G5
+          880.00, 783.99, 659.25, 523.25,  // A5, G5, E5, C5
+          587.33, 0,      783.99, 987.77,  // D5, -, G5, B5
+          1046.5, 987.77, 783.99, 659.25,  // C6, B5, G5, E5
+          698.46, 0,      880.00, 1046.5,  // F5, -, A5, C6
+          987.77, 880.00, 783.99, 659.25,  // B5, A5, G5, E5
+          587.33, 659.25, 783.99, 587.33,  // D5, E5, G5, D5
+          523.25, 0,      392.00, 0        // C5, -, G4, -
+        ];
+        const BASS_NOTES = [
+          130.81, 0, 196.00, 0,  // C3, G3
+          130.81, 0, 196.00, 0,  // C3, G3
+          146.83, 0, 196.00, 0,  // D3, G3
+          130.81, 0, 196.00, 0,  // C3, G3
+          174.61, 0, 220.00, 0,  // F3, A3
+          196.00, 0, 246.94, 0,  // G3, B3
+          146.83, 0, 196.00, 0,  // D3, G3
+          130.81, 0, 196.00, 0   // C3, G3
+        ];
+
+        function ensureContext() {
+          if (!ctx) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return null;
+            ctx = new AudioCtx();
+            masterGain = ctx.createGain();
+            masterGain.gain.setValueAtTime(0.22, ctx.currentTime);
+            masterGain.connect(ctx.destination);
+          }
+          if (ctx.state === "suspended") {
+            ctx.resume().catch(() => {});
+          }
+          return ctx;
+        }
+
+        function playMarimbaNote(freq, time, duration, volume, isXylophone = false) {
+          if (!ctx || !masterGain || freq <= 0) return;
+          const osc = ctx.createOscillator();
+          const overtone = ctx.createOscillator();
+          const gain = ctx.createGain();
+
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(freq, time);
+
+          overtone.type = "triangle";
+          overtone.frequency.setValueAtTime(freq * (isXylophone ? 3 : 4), time);
+
+          const overGain = ctx.createGain();
+          overGain.gain.setValueAtTime(volume * 0.28, time);
+          overGain.gain.exponentialRampToValueAtTime(0.0001, time + 0.045);
+
+          gain.gain.setValueAtTime(0.0001, time);
+          gain.gain.linearRampToValueAtTime(volume, time + 0.008);
+          gain.gain.exponentialRampToValueAtTime(0.0001, time + duration);
+
+          osc.connect(gain);
+          overtone.connect(overGain);
+          overGain.connect(gain);
+          gain.connect(masterGain);
+
+          osc.start(time);
+          overtone.start(time);
+          osc.stop(time + duration + 0.02);
+          overtone.stop(time + 0.06);
+        }
+
+        function playShakerPulse(time, accent) {
+          if (!ctx || !masterGain) return;
+          const bufferSize = Math.floor(ctx.sampleRate * 0.035);
+          const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+          const data = buffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) {
+            data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.35));
+          }
+          const noise = ctx.createBufferSource();
+          noise.buffer = buffer;
+
+          const filter = ctx.createBiquadFilter();
+          filter.type = "highpass";
+          filter.frequency.setValueAtTime(5200, time);
+
+          const gain = ctx.createGain();
+          gain.gain.setValueAtTime(accent ? 0.055 : 0.028, time);
+          gain.gain.exponentialRampToValueAtTime(0.0001, time + 0.035);
+
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(masterGain);
+          noise.start(time);
+        }
+
+        function tickStep() {
+          if (!state.musicEnabled || !isPlaying) return;
+          const c = ensureContext();
+          if (!c || c.state !== "running") return;
+
+          const now = c.currentTime;
+          const idx = stepIndex % MELODY_NOTES.length;
+          const melFreq = MELODY_NOTES[idx];
+          const bassFreq = BASS_NOTES[idx];
+
+          if (melFreq > 0) {
+            playMarimbaNote(melFreq, now, 0.22, 0.26, idx % 4 === 2);
+          }
+          if (bassFreq > 0) {
+            playMarimbaNote(bassFreq, now, 0.28, 0.22, false);
+          }
+          if (idx % 2 === 0) {
+            playShakerPulse(now, idx % 4 === 2);
+          }
+
+          stepIndex = (stepIndex + 1) % MELODY_NOTES.length;
+        }
+
+        function start() {
+          if (!state.musicEnabled) return;
+          const c = ensureContext();
+          if (!c) return;
+          if (isPlaying) return;
+          isPlaying = true;
+          tickStep();
+          stepTimer = setInterval(tickStep, TEMPO_MS);
+        }
+
+        function stop() {
+          isPlaying = false;
+          if (stepTimer) {
+            clearInterval(stepTimer);
+            stepTimer = null;
+          }
+        }
+
+        function syncWithState() {
+          if (state.musicEnabled && userInteracted) {
+            start();
+          } else {
+            stop();
+          }
+        }
+
+        function unlockOnGesture() {
+          userInteracted = true;
+          if (state.musicEnabled) {
+            start();
+          }
+        }
+
+        function duck(ms = 1200) {
+          if (!ctx || !masterGain || !isPlaying) return;
+          if (duckTimeout) clearTimeout(duckTimeout);
+          masterGain.gain.setTargetAtTime(0.04, ctx.currentTime, 0.04);
+          duckTimeout = setTimeout(() => {
+            if (ctx && masterGain) {
+              masterGain.gain.setTargetAtTime(0.22, ctx.currentTime, 0.12);
+            }
+          }, ms);
+        }
+
+        return { start, stop, syncWithState, unlockOnGesture, duck };
+      })();
+
+      /* ----------------------------------------------------------------------
+         4. CONFETTI CELEBRATION ENGINE
+         ---------------------------------------------------------------------- */
+      const Confetti = (() => {
+        const canvas = document.getElementById("confettiCanvas");
+        const ctx = canvas.getContext("2d");
+        let pieces = [];
+        let animId = null;
+
+        function resize() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resize);
+        resize();
+
+        function launch() {
+          resize();
+          const colors = ["#fbbf24", "#f59e0b", "#3b82f6", "#10b981", "#ffffff", "#f43f5e"];
+          pieces = Array.from({ length: 160 }, () => ({
+            x: Math.random() * canvas.width,
+            y: -20 - Math.random() * canvas.height * 0.4,
+            w: 8 + Math.random() * 8,
+            h: 6 + Math.random() * 10,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            vx: (Math.random() - 0.5) * 5,
+            vy: 3 + Math.random() * 5.5,
+            rot: Math.random() * 360,
+            vrot: (Math.random() - 0.5) * 10
+          }));
+
+          if (animId) cancelAnimationFrame(animId);
+          let frames = 0;
+          function step() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            pieces.forEach((p) => {
+              p.x += p.vx;
+              p.y += p.vy;
+              p.rot += p.vrot;
+              ctx.save();
+              ctx.translate(p.x, p.y);
+              ctx.rotate((p.rot * Math.PI) / 180);
+              ctx.fillStyle = p.color;
+              ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+              ctx.restore();
+            });
+            frames++;
+            if (frames < 210) {
+              animId = requestAnimationFrame(step);
+            } else {
+              ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+          }
+          step();
+        }
+
+        return { launch };
+      })();
+
+      /* ----------------------------------------------------------------------
+         5. HELPER UTILITIES & PERSISTENCE
+         ---------------------------------------------------------------------- */
+      function showToast(msg) {
+        const container = document.getElementById("toastContainer");
+        const el = document.createElement("div");
+        el.className = "toast";
+        el.textContent = msg;
+        container.appendChild(el);
+        setTimeout(() => {
+          el.style.opacity = "0";
+          setTimeout(() => el.remove(), 220);
+        }, 2500);
+      }
+
+      function saveState() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (err) {
+          console.warn("Local storage save skipped:", err);
+        }
+      }
+
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const parsed = JSON.parse(raw);
+          if (parsed && Array.isArray(parsed.items) && parsed.items.length > 0) {
+            state = { ...state, ...parsed };
+            // Migrate legacy single-card saves seamlessly
+            if (!Array.isArray(state.digitalCards) || state.digitalCards.length < 2) {
+              state.digitalCards = [
+                Array.isArray(parsed.digitalCard) ? parsed.digitalCard : [],
+                []
+              ];
+            }
+            if (!Array.isArray(state.digitalWonLines) || !Array.isArray(state.digitalWonLines[0])) {
+              state.digitalWonLines = [
+                Array.isArray(parsed.digitalWonLines) ? parsed.digitalWonLines : [],
+                []
+              ];
+            }
+            if (![1, 2].includes(Number(state.digitalPlayers))) {
+              state.digitalPlayers = 1;
+            }
+          }
+        } catch (err) {
+          console.warn("Could not restore saved session:", err);
+        }
+      }
+
+      function getRemainingItems() {
+        const drawnIds = new Set(state.drawnHistory.map((entry) => entry.item.id));
+        return state.items.filter((item) => !drawnIds.has(item.id));
+      }
+
+      function formatTimeNow() {
+        const now = new Date();
+        return now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+      }
+
+      function formatDrawNumber(num) {
+        return String(num).padStart(2, "0");
+      }
+
+      function isImageUrl(val) {
+        if (!val || typeof val !== "string") return false;
+        const trimmed = val.trim();
+        return /^https?:\/\//i.test(trimmed) || /^data:image\//i.test(trimmed);
+      }
+
+      function openModal(id) {
+        document.getElementById(id).classList.add("open");
+      }
+
+      function closeModal(id) {
+        document.getElementById(id).classList.remove("open");
+      }
+
+      /* ----------------------------------------------------------------------
+         6. CORE DRAW & GAME LOGIC
+         ---------------------------------------------------------------------- */
+      function executeDraw(forceSequential = false) {
+        if (isDrawingAnimation) return;
+
+        if (state.paused) {
+          state.paused = false;
+          showToast("Game Resumed");
+        }
+
+        if (!state.items || state.items.length === 0) {
+          showToast("No vocabulary items available.");
+          renderAll();
+          return;
+        }
+
+        const remaining = getRemainingItems();
+        const activePool = remaining.length > 0 ? remaining : state.items;
+
+        let chosen;
+        if (!forceSequential && state.randomize) {
+          const idx = Math.floor(Math.random() * activePool.length);
+          chosen = activePool[idx];
+        } else {
+          if (remaining.length > 0) {
+            chosen = remaining[0];
+          } else {
+            chosen = state.items[state.drawnHistory.length % state.items.length];
+          }
+        }
+
+        const commitDraw = () => {
+          const drawEntry = {
+            drawNumber: state.drawnHistory.length + 1,
+            item: { ...chosen },
+            timestamp: formatTimeNow()
+          };
+
+          state.drawnHistory.push(drawEntry);
+          state.inspectIndex = -1; // snap to newest drawn item
+          isDrawingAnimation = false;
+
+          AudioFX.draw();
+          startTurnTimer();
+          saveState();
+          renderAll(true);
+        };
+
+        // Fast-cycling word caller animation with natural deceleration
+        const cyclePool = state.items.length > 1 ? state.items : activePool;
+        if (cyclePool.length <= 1) {
+          commitDraw();
+          return;
+        }
+
+        isDrawingAnimation = true;
+        document.getElementById("btnRandomDraw").disabled = true;
+        document.getElementById("btnNextItem").disabled = true;
+
+        const stageCategory = document.getElementById("stageCategory");
+        const stageVisual = document.getElementById("stageVisual");
+        const stageWord = document.getElementById("stageWord");
+        const stageSubtext = document.getElementById("stageSubtext");
+        const digitalCurrentWord = document.getElementById("digitalCurrentWord");
+        const reviewBanner = document.getElementById("reviewBanner");
+
+        reviewBanner.style.display = "none";
+        stageCategory.textContent = "CALLING NEXT WORD...";
+        stageSubtext.textContent = "Get your Bingo markers ready!";
+        stageWord.classList.remove("word-pop");
+        stageWord.classList.add("word-cycling");
+        stageVisual.classList.add("visual-cycling");
+
+        const totalSteps = 16;
+        let step = 0;
+        let lastPreviewWord = "";
+
+        const runCycleStep = () => {
+          if (step >= totalSteps) {
+            stageWord.classList.remove("word-cycling");
+            stageVisual.classList.remove("visual-cycling");
+            commitDraw();
+            return;
+          }
+
+          let candidate = cyclePool[Math.floor(Math.random() * cyclePool.length)];
+          if (cyclePool.length > 1 && candidate.word === lastPreviewWord) {
+            candidate = cyclePool[(cyclePool.indexOf(candidate) + 1) % cyclePool.length];
+          }
+          lastPreviewWord = candidate.word;
+
+          stageWord.textContent = candidate.word;
+          digitalCurrentWord.textContent = `🎲 ${candidate.word}...`;
+          if (isImageUrl(candidate.image)) {
+            stageVisual.innerHTML = `<img src="${candidate.image}" alt="" onerror="this.outerHTML='📘'" />`;
+          } else {
+            stageVisual.textContent = candidate.image || "📘";
+          }
+
+          AudioFX.cycleTick(step / totalSteps);
+          step++;
+
+          const progress = step / totalSteps;
+          const nextDelay = Math.round(45 + Math.pow(progress, 2.3) * 145);
+          setTimeout(runCycleStep, nextDelay);
+        };
+
+        runCycleStep();
+      }
+
+      function viewPreviousItem() {
+        if (state.drawnHistory.length <= 1) return;
+        const currentIdx = state.inspectIndex >= 0 ? state.inspectIndex : state.drawnHistory.length - 1;
+        if (currentIdx > 0) {
+          state.inspectIndex = currentIdx - 1;
+          renderAll(true);
+        }
+      }
+
+      function returnToLatestItem() {
+        state.inspectIndex = -1;
+        renderAll(true);
+      }
+
+      function resetGameRound() {
+        state.drawnHistory = [];
+        state.inspectIndex = -1;
+        state.paused = false;
+        stopTurnTimer();
+        buildDigitalBoards();
+        saveState();
+        renderAll();
+        showToast("Draw history reset. Ready for a new round!");
+      }
+
+      /* ----------------------------------------------------------------------
+         7. OPTIONAL COUNTDOWN TIMER
+         ---------------------------------------------------------------------- */
+      function stopTurnTimer() {
+        if (timerInterval) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        timerRemaining = 0;
+        renderTimerHUD();
+      }
+
+      function startTurnTimer() {
+        stopTurnTimer();
+        if (!state.timerSeconds || state.timerSeconds <= 0) return;
+        timerRemaining = state.timerSeconds;
+        renderTimerHUD();
+        timerInterval = setInterval(() => {
+          if (state.paused) return;
+          timerRemaining--;
+          if (timerRemaining <= 3 && timerRemaining > 0) AudioFX.tick();
+          renderTimerHUD();
+          if (timerRemaining <= 0) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+          }
+        }, 1000);
+      }
+
+      function renderTimerHUD() {
+        const badge = document.getElementById("hudTimerBadge");
+        const barWrap = document.getElementById("timerBarWrap");
+        const barFill = document.getElementById("timerBarFill");
+
+        if (!state.timerSeconds || state.timerSeconds <= 0) {
+          badge.style.display = "none";
+          barWrap.style.display = "none";
+          return;
+        }
+
+        badge.style.display = "inline-flex";
+        barWrap.style.display = "block";
+        badge.textContent = `⏱️ ${timerRemaining}s`;
+        const pct = Math.max(0, Math.min(100, (timerRemaining / state.timerSeconds) * 100));
+        barFill.style.width = `${pct}%`;
+        barFill.style.background = pct <= 25
+          ? "linear-gradient(90deg, #f43f5e, #fbbf24)"
+          : "linear-gradient(90deg, #10b981, #fbbf24)";
+      }
+
+      /* ----------------------------------------------------------------------
+         8. DIGITAL BINGO BOARD GENERATION (1P & 2P) & WIN DETECTION
+         ---------------------------------------------------------------------- */
+      function generateSingleBoardCells() {
+        const size = Number(state.gridSize) || 4;
+        const totalCells = size * size;
+        const hasFree = state.freeSpace && size % 2 === 1;
+        const centerIdx = Math.floor(totalCells / 2);
+
+        const pool = [...state.items];
+        for (let i = pool.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [pool[i], pool[j]] = [pool[j], pool[i]];
+        }
+
+        const cells = [];
+        let poolPtr = 0;
+        for (let i = 0; i < totalCells; i++) {
+          if (hasFree && i === centerIdx) {
+            cells.push({
+              word: "FREE",
+              category: "Bonus",
+              image: "⭐",
+              marked: true,
+              isFree: true
+            });
+          } else {
+            const src = pool[poolPtr % pool.length] || { word: `Word ${i + 1}`, category: "", image: "📘" };
+            poolPtr++;
+            cells.push({
+              word: src.word,
+              category: src.category || "",
+              image: src.image || "",
+              marked: false,
+              isFree: false
+            });
+          }
+        }
+        return cells;
+      }
+
+      function buildDigitalBoards() {
+        state.digitalCards = [generateSingleBoardCells(), generateSingleBoardCells()];
+        state.digitalWonLines = [[], []];
+      }
+
+      function checkDigitalWinForPlayer(playerIdx) {
+        const size = Number(state.gridSize) || 4;
+        const cells = state.digitalCards[playerIdx];
+        if (!cells || cells.length !== size * size) return null;
+
+        const lines = [];
+        // Horizontal rows
+        for (let r = 0; r < size; r++) {
+          const row = [];
+          for (let c = 0; c < size; c++) row.push(r * size + c);
+          if (row.every((idx) => cells[idx].marked)) lines.push({ name: `Row ${r + 1}`, indices: row });
+        }
+        // Vertical columns
+        for (let c = 0; c < size; c++) {
+          const col = [];
+          for (let r = 0; r < size; r++) col.push(r * size + c);
+          if (col.every((idx) => cells[idx].marked)) lines.push({ name: `Column ${c + 1}`, indices: col });
+        }
+        // Main diagonals
+        const diag1 = [];
+        const diag2 = [];
+        for (let i = 0; i < size; i++) {
+          diag1.push(i * size + i);
+          diag2.push(i * size + (size - 1 - i));
+        }
+        if (diag1.every((idx) => cells[idx].marked)) lines.push({ name: "Diagonal", indices: diag1 });
+        if (diag2.every((idx) => cells[idx].marked)) lines.push({ name: "Diagonal", indices: diag2 });
+
+        // Four Corners
+        const corners = [0, size - 1, size * (size - 1), size * size - 1];
+        if (corners.every((idx) => cells[idx].marked)) {
+          lines.push({ name: "Four Corners", indices: corners });
+        }
+
+        // Full House
+        if (cells.every((c) => c.marked)) {
+          lines.push({ name: "FULL HOUSE!", indices: cells.map((_, i) => i) });
+        }
+
+        return lines.length > 0 ? lines : null;
+      }
+
+      function toggleDigitalCell(playerIdx, cellIndex) {
+        const board = state.digitalCards[playerIdx];
+        if (!board) return;
+        const cell = board[cellIndex];
+        if (!cell || cell.isFree) return;
+
+        const hadWinBefore = (state.digitalWonLines[playerIdx] || []).length > 0;
+        cell.marked = !cell.marked;
+        AudioFX.mark();
+
+        const wins = checkDigitalWinForPlayer(playerIdx);
+        if (wins) {
+          const winSet = new Set();
+          wins.forEach((w) => w.indices.forEach((idx) => winSet.add(idx)));
+          state.digitalWonLines[playerIdx] = Array.from(winSet);
+          if (!hadWinBefore) {
+            const headline = state.digitalPlayers === 2
+              ? `Player ${playerIdx + 1} BINGO Winner!`
+              : "Digital Board Winner!";
+            triggerWinnerCelebration(headline, wins[0].name);
+          }
+        } else {
+          state.digitalWonLines[playerIdx] = [];
+        }
+
+        saveState();
+        renderDigitalBoard();
+      }
+
+      /* ----------------------------------------------------------------------
+         9. RENDERING ENGINE
+         ---------------------------------------------------------------------- */
+      function renderAll(animateWord = false) {
+        document.getElementById("displayGameTitle").textContent = state.gameTitle;
+        document.getElementById("presetBadge").textContent = `• ${state.presetName.toUpperCase()}`;
+
+        const isPhysical = state.mode === "physical";
+        document.getElementById("btnModePhysical").classList.toggle("active", isPhysical);
+        document.getElementById("btnModePhysical").setAttribute("aria-selected", String(isPhysical));
+        document.getElementById("btnModeDigital").classList.toggle("active", !isPhysical);
+        document.getElementById("btnModeDigital").setAttribute("aria-selected", String(!isPhysical));
+
+        document.getElementById("physicalStage").style.display = isPhysical ? "flex" : "none";
+        document.getElementById("digitalStage").style.display = isPhysical ? "none" : "flex";
+
+        document.getElementById("soundIcon").textContent = state.soundEnabled ? "🔊" : "🔇";
+        document.getElementById("soundLabel").textContent = state.soundEnabled ? "Sound ON" : "Sound OFF";
+
+        document.getElementById("musicIcon").textContent = state.musicEnabled ? "🎵" : "🔇";
+        document.getElementById("musicLabel").textContent = state.musicEnabled ? "Music ON" : "Music OFF";
+
+        const total = state.items.length;
+        const drawnCount = state.drawnHistory.length;
+        const remainingCount = Math.max(0, total - drawnCount);
+
+        const activeIdx = state.inspectIndex >= 0 ? state.inspectIndex : drawnCount - 1;
+        const activeEntry = activeIdx >= 0 ? state.drawnHistory[activeIdx] : null;
+
+        document.getElementById("hudDrawBadge").textContent = activeEntry
+          ? `DRAW #${formatDrawNumber(activeEntry.drawNumber)}`
+          : "DRAW #00";
+        document.getElementById("hudRemainingBadge").textContent = `📦 Remaining: ${remainingCount}`;
+        document.getElementById("hudDrawnBadge").textContent = `✅ Drawn: ${drawnCount}`;
+        document.getElementById("hudPausedBadge").style.display = state.paused ? "inline-flex" : "none";
+        document.getElementById("btnPauseToggle").innerHTML = state.paused
+          ? "<span>▶️</span> Resume"
+          : "<span>⏸️</span> Pause";
+
+        const reviewBanner = document.getElementById("reviewBanner");
+        const btnReturnLatest = document.getElementById("btnReturnLatest");
+        if (state.inspectIndex >= 0 && state.inspectIndex < drawnCount - 1) {
+          reviewBanner.style.display = "block";
+          reviewBanner.textContent = `Reviewing Draw #${formatDrawNumber(activeEntry.drawNumber)} of #${formatDrawNumber(drawnCount)}`;
+          btnReturnLatest.style.display = "inline-flex";
+        } else {
+          reviewBanner.style.display = "none";
+          btnReturnLatest.style.display = "none";
+        }
+
+        const stageCategory = document.getElementById("stageCategory");
+        const stageVisual = document.getElementById("stageVisual");
+        const stageWord = document.getElementById("stageWord");
+        const stageSubtext = document.getElementById("stageSubtext");
+        const digitalCurrentWord = document.getElementById("digitalCurrentWord");
+
+        if (activeEntry) {
+          stageCategory.textContent = activeEntry.item.category || "Vocabulary";
+          if (isImageUrl(activeEntry.item.image)) {
+            stageVisual.innerHTML = `<img src="${activeEntry.item.image}" alt="${activeEntry.item.word}" onerror="this.outerHTML='📘'" />`;
+          } else {
+            stageVisual.textContent = activeEntry.item.image || "📘";
+          }
+          stageWord.textContent = activeEntry.item.word;
+          stageSubtext.textContent = `Drawn at ${activeEntry.timestamp} • ${remainingCount} item${remainingCount === 1 ? "" : "s"} remaining in pool`;
+          digitalCurrentWord.textContent = `#${formatDrawNumber(activeEntry.drawNumber)} — ${activeEntry.item.word}`;
+
+          if (animateWord) {
+            stageWord.classList.remove("word-pop");
+            void stageWord.offsetWidth;
+            stageWord.classList.add("word-pop");
+          }
+        } else {
+          stageCategory.textContent = "READY TO PLAY";
+          stageVisual.textContent = "🎲";
+          stageWord.textContent = "Press RANDOM DRAW";
+          stageSubtext.textContent = `${total} vocabulary items loaded • Students mark their physical Bingo cards`;
+          digitalCurrentWord.textContent = "Press RANDOM DRAW to call first word";
+        }
+
+        const hasItems = state.items.length > 0 && !isDrawingAnimation;
+        document.getElementById("btnRandomDraw").disabled = !hasItems;
+        document.getElementById("btnNextItem").disabled = !hasItems;
+        document.getElementById("btnPrevItem").disabled = isDrawingAnimation || drawnCount <= 1 || activeIdx <= 0;
+
+        renderTeamStrip();
+        renderDigitalBoard();
+        renderHistoryPanel();
+        renderTimerHUD();
+      }
+
+      function renderTeamStrip() {
+        const strip = document.getElementById("teamStrip");
+        const count = Number(state.teamCount) || 0;
+        if (count <= 0) {
+          strip.style.display = "none";
+          return;
+        }
+        strip.style.display = "flex";
+        while (state.teamScores.length < count) state.teamScores.push(0);
+
+        let html = `<span class="team-strip-label">🏅 Classroom Teams:</span>`;
+        for (let i = 0; i < count; i++) {
+          html += `
+            <div class="team-pill">
+              <span>Team ${i + 1}</span>
+              <span class="team-score-badge">${state.teamScores[i]}</span>
+              <button class="team-step-btn" data-team-delta="1" data-team-idx="${i}" title="Add point">+</button>
+              <button class="team-step-btn" data-team-delta="-1" data-team-idx="${i}" title="Subtract point">−</button>
+            </div>
+          `;
+        }
+        strip.innerHTML = html;
+      }
+
+      function renderDigitalBoard() {
+        if (state.mode !== "digital") return;
+        const size = Number(state.gridSize) || 4;
+        const expectedLen = size * size;
+        const playerCount = Number(state.digitalPlayers) === 2 ? 2 : 1;
+
+        document.getElementById("btnDigital1P").classList.toggle("active", playerCount === 1);
+        document.getElementById("btnDigital2P").classList.toggle("active", playerCount === 2);
+
+        if (
+          !Array.isArray(state.digitalCards) ||
+          state.digitalCards.length < 2 ||
+          !Array.isArray(state.digitalCards[0]) ||
+          state.digitalCards[0].length !== expectedLen ||
+          !Array.isArray(state.digitalCards[1]) ||
+          state.digitalCards[1].length !== expectedLen
+        ) {
+          buildDigitalBoards();
+        }
+
+        const container = document.getElementById("digitalBoardsContainer");
+        container.classList.toggle("two-players", playerCount === 2);
+
+        let panelsHtml = "";
+        for (let p = 0; p < playerCount; p++) {
+          const cards = state.digitalCards[p];
+          const winLines = state.digitalWonLines[p] || [];
+          const winSet = new Set(winLines);
+          const hasWon = winSet.size > 0;
+          const markedCount = cards.filter((c) => c.marked).length;
+          const badgeClass = p === 0 ? "p1" : "p2";
+          const panelClass = p === 1 ? "player-2" : "";
+          const label = playerCount === 2 ? `Player ${p + 1}` : "Player 1 Card";
+
+          const cellsHtml = cards
+            .map((cell, idx) => {
+              const classes = ["bingo-cell"];
+              if (cell.marked) classes.push("marked");
+              if (winSet.has(idx)) classes.push("winning-cell");
+              const visual = isImageUrl(cell.image)
+                ? `<img src="${cell.image}" alt="" style="width:36px;height:36px;object-fit:cover;border-radius:6px;pointer-events:none;" />`
+                : `<span class="cell-icon">${cell.image || ""}</span>`;
+              return `
+                <button type="button" class="${classes.join(" ")}" data-player-idx="${p}" data-cell-idx="${idx}">
+                  ${visual}
+                  <span class="cell-word">${escapeHtml(cell.word)}</span>
+                </button>
+              `;
+            })
+            .join("");
+
+          panelsHtml += `
+            <div class="player-board-panel ${panelClass} ${hasWon ? "has-bingo" : ""}">
+              <div class="player-board-header">
+                <span class="player-badge ${badgeClass}">${p === 0 ? "🔵" : "🟡"} ${label}</span>
+                <span class="player-status-pill ${hasWon ? "won" : ""}">
+                  ${hasWon ? "🏆 BINGO!" : `${markedCount} / ${expectedLen} marked`}
+                </span>
+              </div>
+              <div class="bingo-grid" style="grid-template-columns: repeat(${size}, minmax(0, 1fr));">
+                ${cellsHtml}
+              </div>
+            </div>
+          `;
+        }
+
+        container.innerHTML = panelsHtml;
+      }
+
+      function renderHistoryPanel() {
+        const drawnCount = state.drawnHistory.length;
+        const remaining = getRemainingItems();
+
+        document.getElementById("historyCountSummary").textContent = `${drawnCount} / ${state.items.length}`;
+        document.getElementById("tabDrawnCount").textContent = drawnCount;
+        document.getElementById("tabRemainingCount").textContent = remaining.length;
+
+        document.getElementById("tabDrawnItems").classList.toggle("active", state.historyTab === "drawn");
+        document.getElementById("tabRemainingItems").classList.toggle("active", state.historyTab === "remaining");
+
+        const sortLabels = { newest: "Newest ↓", oldest: "Oldest ↑", alpha: "A → Z" };
+        document.getElementById("sortLabel").textContent = sortLabels[state.sortOrder] || "Newest ↓";
+
+        const query = document.getElementById("historySearchInput").value.trim().toLowerCase();
+        const listEl = document.getElementById("historyList");
+
+        if (state.historyTab === "drawn") {
+          let entries = [...state.drawnHistory];
+          if (query) {
+            entries = entries.filter(
+              (e) =>
+                e.item.word.toLowerCase().includes(query) ||
+                (e.item.category && e.item.category.toLowerCase().includes(query))
+            );
+          }
+
+          if (state.sortOrder === "newest") {
+            entries.reverse();
+          } else if (state.sortOrder === "alpha") {
+            entries.sort((a, b) => a.item.word.localeCompare(b.item.word));
+          }
+
+          if (entries.length === 0) {
+            listEl.innerHTML = `<div style="text-align:center; color:var(--slate-400); padding:32px 12px;">${
+              drawnCount === 0 ? "No items drawn yet. Press RANDOM DRAW to begin!" : "No drawn words match your search."
+            }</div>`;
+            return;
+          }
+
+          listEl.innerHTML = entries
+            .map((entry) => {
+              const isLatest = entry.drawNumber === drawnCount;
+              const icon = isImageUrl(entry.item.image) ? "🖼️" : entry.item.image || "📘";
+              return `
+                <div class="history-item ${isLatest ? "latest" : ""}">
+                  <div class="history-item-left">
+                    <div class="draw-seq-badge">#${formatDrawNumber(entry.drawNumber)}</div>
+                    <div class="history-word-wrap">
+                      <div class="history-word">${icon} ${escapeHtml(entry.item.word)}</div>
+                      <div class="history-meta">${escapeHtml(entry.item.category || "General")} • ${entry.timestamp}</div>
+                    </div>
+                  </div>
+                  ${isLatest ? `<span style="font-size:0.72rem; font-weight:900; color:var(--gold-300);">LATEST</span>` : ""}
+                </div>
+              `;
+            })
+            .join("");
+        } else {
+          let rem = [...remaining];
+          if (query) {
+            rem = rem.filter(
+              (item) =>
+                item.word.toLowerCase().includes(query) ||
+                (item.category && item.category.toLowerCase().includes(query))
+            );
+          }
+          if (state.sortOrder === "alpha") {
+            rem.sort((a, b) => a.word.localeCompare(b.word));
+          }
+
+          if (rem.length === 0) {
+            listEl.innerHTML = `<div style="text-align:center; color:var(--slate-400); padding:32px 12px;">No remaining items!</div>`;
+            return;
+          }
+
+          listEl.innerHTML = rem
+            .map((item) => {
+              const icon = isImageUrl(item.image) ? "🖼️" : item.image || "📘";
+              return `
+                <div class="history-item">
+                  <div class="history-item-left">
+                    <div class="draw-seq-badge" style="background:rgba(255,255,255,0.08); border-color:rgba(255,255,255,0.15);">—</div>
+                    <div class="history-word-wrap">
+                      <div class="history-word">${icon} ${escapeHtml(item.word)}</div>
+                      <div class="history-meta">${escapeHtml(item.category || "General")} • Not drawn yet</div>
+                    </div>
+                  </div>
+                </div>
+              `;
+            })
+            .join("");
+        }
+      }
+
+      function escapeHtml(str) {
+        return String(str)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      /* ----------------------------------------------------------------------
+         10. DRAW HISTORY EXPORT / COPY / PRINT
+         ---------------------------------------------------------------------- */
+      function copyHistoryToClipboard() {
+        if (state.drawnHistory.length === 0) {
+          showToast("No drawn items to copy yet.");
+          return;
+        }
+        const lines = [
+          `${state.gameTitle} — Draw History (${state.drawnHistory.length}/${state.items.length})`,
+          ...state.drawnHistory.map(
+            (e) => `#${formatDrawNumber(e.drawNumber)} | ${e.item.word} (${e.item.category || "General"}) @ ${e.timestamp}`
+          )
+        ];
+        const text = lines.join("\n");
+
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          document.execCommand("copy");
+          showToast("Copied complete draw history to clipboard!");
+        } catch (err) {
+          showToast("Could not copy automatically.");
+        }
+        ta.remove();
+      }
+
+      function triggerDownload(filename, content, mimeType) {
+        const blob = new Blob([content], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+
+      function downloadDrawnTxt() {
+        if (state.drawnHistory.length === 0) {
+          showToast("Draw at least one item before downloading.");
+          return;
+        }
+        const content = [
+          `GAME: ${state.gameTitle}`,
+          `DATE: ${new Date().toLocaleDateString()}`,
+          `DRAWN: ${state.drawnHistory.length} / ${state.items.length}`,
+          `----------------------------------------`,
+          ...state.drawnHistory.map(
+            (e) => `Draw #${formatDrawNumber(e.drawNumber)} | ${e.item.word} | ${e.item.category || "General"} | ${e.timestamp}`
+          )
+        ].join("\n");
+        triggerDownload("bingo_draw_history.txt", content, "text/plain;charset=utf-8");
+        showToast("Downloaded bingo_draw_history.txt");
+      }
+
+      function downloadDrawnCsv() {
+        if (state.drawnHistory.length === 0) {
+          showToast("Draw at least one item before downloading.");
+          return;
+        }
+        const rows = [
+          ["Draw Number", "Word", "Category", "Time Drawn"],
+          ...state.drawnHistory.map((e) => [
+            e.drawNumber,
+            `"${e.item.word.replace(/"/g, '""')}"`,
+            `"${(e.item.category || "").replace(/"/g, '""')}"`,
+            `"${e.timestamp}"`
+          ])
+        ];
+        const csv = rows.map((r) => r.join(",")).join("\n");
+        triggerDownload("bingo_draw_history.csv", csv, "text/csv;charset=utf-8");
+        showToast("Downloaded bingo_draw_history.csv");
+      }
+
+      function printDrawHistory() {
+        const sheet = document.getElementById("printSheet");
+        const rowsHtml = state.drawnHistory
+          .map(
+            (e) => `
+            <tr>
+              <td>#${formatDrawNumber(e.drawNumber)}</td>
+              <td><strong>${escapeHtml(e.item.word)}</strong></td>
+              <td>${escapeHtml(e.item.category || "General")}</td>
+              <td>${escapeHtml(e.timestamp)}</td>
+            </tr>
+          `
+          )
+          .join("");
+
+        sheet.innerHTML = `
+          <h1>${escapeHtml(state.gameTitle)} — Draw Verification Sheet</h1>
+          <div class="print-meta">
+            Printed: ${new Date().toLocaleString()} &nbsp;|&nbsp;
+            Drawn: ${state.drawnHistory.length} &nbsp;|&nbsp;
+            Remaining: ${getRemainingItems().length}
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th style="width:90px;">Draw #</th>
+                <th>Vocabulary Word</th>
+                <th>Category</th>
+                <th style="width:130px;">Time Drawn</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rowsHtml || '<tr><td colspan="4">No items drawn yet.</td></tr>'}
+            </tbody>
+          </table>
+        `;
+        window.print();
+      }
+
+      /* ----------------------------------------------------------------------
+         11. TEACHER VERIFICATION MODAL & WINNER ANNOUNCEMENT
+         ---------------------------------------------------------------------- */
+      function openVerificationModal() {
+        state.paused = true;
+        renderAll();
+        verifyCheckedIds.clear();
+        document.getElementById("verifySearchInput").value = "";
+        document.getElementById("verifyWinnerTeam").value = "";
+        renderVerifyChecklist();
+        openModal("verifyModal");
+      }
+
+      function renderVerifyChecklist() {
+        const query = document.getElementById("verifySearchInput").value.trim().toLowerCase();
+        document.getElementById("verifyDrawnTotal").textContent = state.drawnHistory.length;
+        const grid = document.getElementById("verifyChecklistGrid");
+
+        const filtered = state.drawnHistory.filter((e) => e.item.word.toLowerCase().includes(query));
+        if (filtered.length === 0) {
+          grid.innerHTML = `<div style="grid-column:1/-1; color:var(--slate-400); padding:16px; text-align:center;">No matching drawn words found!</div>`;
+          return;
+        }
+
+        grid.innerHTML = filtered
+          .map((e) => {
+            const checked = verifyCheckedIds.has(e.item.id);
+            return `
+              <button class="verify-chip ${checked ? "checked" : ""}" data-verify-id="${e.item.id}">
+                <span>#${formatDrawNumber(e.drawNumber)} ${escapeHtml(e.item.word)}</span>
+                <span>${checked ? "✅" : "⬜"}</span>
+              </button>
+            `;
+          })
+          .join("");
+      }
+
+      function triggerWinnerCelebration(winnerName, detailText = "Verified Classroom Champion") {
+        document.getElementById("winnerSubHeadline").textContent = winnerName || "Congratulations!";
+        document.getElementById("winnerPatternLabel").textContent = detailText;
+        AudioFX.winner();
+        Confetti.launch();
+        openModal("winnerModal");
+      }
+
+      /* ----------------------------------------------------------------------
+         12. SETTINGS MODAL & VOCABULARY EDITOR
+         ---------------------------------------------------------------------- */
+      let settingsVocabDraft = [];
+
+      function openSettingsModal() {
+        document.getElementById("inputGameTitle").value = state.gameTitle;
+        document.getElementById("selectGridSize").value = String(state.gridSize);
+        document.getElementById("selectTeamCount").value = String(state.teamCount);
+        document.getElementById("selectTimerSeconds").value = String(state.timerSeconds);
+        document.getElementById("checkFreeSpace").checked = Boolean(state.freeSpace);
+        document.getElementById("checkRandomize").checked = Boolean(state.randomize);
+        document.getElementById("checkMusicEnabled").checked = Boolean(state.musicEnabled);
+
+        settingsVocabDraft = JSON.parse(JSON.stringify(state.items));
+        renderSettingsVocabRows();
+        openModal("settingsModal");
+      }
+
+      function renderSettingsVocabRows() {
+        document.getElementById("vocabEditorCount").textContent = settingsVocabDraft.length;
+        const container = document.getElementById("vocabEditorList");
+        container.innerHTML = settingsVocabDraft
+          .map(
+            (item, idx) => `
+            <div class="vocab-row" data-row-idx="${idx}">
+              <span style="font-weight:800; color:var(--slate-400); font-size:0.82rem;">${idx + 1}</span>
+              <input type="text" data-field="word" value="${escapeHtml(item.word)}" placeholder="English word" />
+              <input type="text" data-field="category" value="${escapeHtml(item.category || "")}" placeholder="Category" />
+              <input type="text" data-field="image" value="${escapeHtml(item.image || "")}" placeholder="Emoji or URL" />
+              <button class="btn btn-sm btn-danger" data-del-vocab="${idx}" title="Delete item">✕</button>
+            </div>
+          `
+          )
+          .join("");
+      }
+
+      function syncDraftFromInputs() {
+        const rows = document.querySelectorAll("#vocabEditorList .vocab-row");
+        rows.forEach((row) => {
+          const idx = Number(row.dataset.rowIdx);
+          if (!settingsVocabDraft[idx]) return;
+          settingsVocabDraft[idx].word = row.querySelector('[data-field="word"]').value.trim();
+          settingsVocabDraft[idx].category = row.querySelector('[data-field="category"]').value.trim();
+          settingsVocabDraft[idx].image = row.querySelector('[data-field="image"]').value.trim();
+        });
+      }
+
+      /* ----------------------------------------------------------------------
+         13. JSON IMPORT, VALIDATION, PREVIEW & EXPORT
+         ---------------------------------------------------------------------- */
+      function exportGameJson() {
+        const payload = {
+          gameTitle: state.gameTitle,
+          version: "1.0",
+          gridSize: Number(state.gridSize),
+          freeSpace: Boolean(state.freeSpace),
+          items: state.items.map((item, idx) => ({
+            id: idx + 1,
+            word: item.word,
+            category: item.category || "General",
+            image: item.image || ""
+          }))
+        };
+        const safeName = state.gameTitle.toLowerCase().replace(/[^a-z0-9]+/g, "_").replace(/^_|_$/g, "") || "classroom_bingo";
+        triggerDownload(`${safeName}.json`, JSON.stringify(payload, null, 2), "application/json");
+        showToast(`Exported ${safeName}.json`);
+      }
+
+      function downloadSampleJson() {
+        const sample = {
+          gameTitle: "Weather Bingo",
+          version: "1.0",
+          gridSize: 3,
+          freeSpace: true,
+          items: [
+            { id: 1, word: "Sunny", category: "Weather", image: "☀️" },
+            { id: 2, word: "Rainy", category: "Weather", image: "🌧️" },
+            { id: 3, word: "Cloudy", category: "Weather", image: "☁️" },
+            { id: 4, word: "Windy", category: "Weather", image: "💨" },
+            { id: 5, word: "Snowy", category: "Weather", image: "❄️" },
+            { id: 6, word: "Stormy", category: "Weather", image: "⛈️" },
+            { id: 7, word: "Hot", category: "Temperature", image: "🥵" },
+            { id: 8, word: "Cold", category: "Temperature", image: "🥶" },
+            { id: 9, word: "Rainbow", category: "Sky", image: "🌈" }
+          ]
+        };
+        triggerDownload("weather_bingo_sample.json", JSON.stringify(sample, null, 2), "application/json");
+        showToast("Downloaded weather_bingo_sample.json");
+      }
+
+      function handleJsonFileUpload(file) {
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          try {
+            const parsed = JSON.parse(e.target.result);
+            if (!parsed || typeof parsed !== "object") {
+              throw new Error("The JSON file must contain a valid object at the top level.");
+            }
+            if (!Array.isArray(parsed.items) || parsed.items.length === 0) {
+              throw new Error('The JSON file must include a non-empty "items" array (e.g., "items": [{ "id": 1, "word": "Sunny" }]).');
+            }
+            const cleanedItems = parsed.items
+              .map((entry, index) => {
+                if (typeof entry === "string") {
+                  return { id: index + 1, word: entry.trim(), category: "General", image: "" };
+                }
+                if (!entry || typeof entry !== "object" || typeof entry.word !== "string" || !entry.word.trim()) {
+                  throw new Error(`Item #${index + 1} is missing a valid "word" text field.`);
+                }
+                return {
+                  id: entry.id || index + 1,
+                  word: entry.word.trim(),
+                  category: typeof entry.category === "string" ? entry.category.trim() : "General",
+                  image: typeof entry.image === "string" ? entry.image.trim() : ""
+                };
+              })
+              .filter((x) => x.word.length > 0);
+
+            if (cleanedItems.length < 4) {
+              throw new Error("Please include at least 4 valid vocabulary words in the JSON file.");
+            }
+
+            const validGrid = [3, 4, 5].includes(Number(parsed.gridSize)) ? Number(parsed.gridSize) : state.gridSize;
+            pendingJsonDraft = {
+              gameTitle: typeof parsed.gameTitle === "string" && parsed.gameTitle.trim() ? parsed.gameTitle.trim() : "Imported Classroom Bingo",
+              gridSize: validGrid,
+              freeSpace: typeof parsed.freeSpace === "boolean" ? parsed.freeSpace : state.freeSpace,
+              items: cleanedItems
+            };
+
+            renderJsonPreviewModal();
+            openModal("jsonPreviewModal");
+          } catch (err) {
+            document.getElementById("errorModalMessage").textContent =
+              `Could not load "${file.name}". ${err.message || "Please verify the JSON syntax and try again."}`;
+            openModal("errorModal");
+          }
+        };
+        reader.readAsText(file);
+      }
+
+      function renderJsonPreviewModal() {
+        if (!pendingJsonDraft) return;
+        document.getElementById("jsonImportMetaBanner").innerHTML = `
+          <strong>Title:</strong> ${escapeHtml(pendingJsonDraft.gameTitle)} &nbsp;|&nbsp;
+          <strong>Grid:</strong> ${pendingJsonDraft.gridSize}×${pendingJsonDraft.gridSize} &nbsp;|&nbsp;
+          <strong>FREE Space:</strong> ${pendingJsonDraft.freeSpace ? "Yes" : "No"} &nbsp;|&nbsp;
+          <strong>Words:</strong> ${pendingJsonDraft.items.length}
+        `;
+
+        const list = document.getElementById("jsonPreviewList");
+        list.innerHTML = pendingJsonDraft.items
+          .map(
+            (item, idx) => `
+            <div class="vocab-row" data-preview-idx="${idx}">
+              <span style="font-weight:800; color:var(--slate-400); font-size:0.82rem;">${idx + 1}</span>
+              <input type="text" data-pfield="word" value="${escapeHtml(item.word)}" />
+              <input type="text" data-pfield="category" value="${escapeHtml(item.category || "")}" />
+              <input type="text" data-pfield="image" value="${escapeHtml(item.image || "")}" />
+              <button class="btn btn-sm btn-danger" data-del-preview="${idx}" title="Remove item">✕</button>
+            </div>
+          `
+          )
+          .join("");
+      }
+
+      function syncJsonPreviewInputs() {
+        if (!pendingJsonDraft) return;
+        document.querySelectorAll("#jsonPreviewList .vocab-row").forEach((row) => {
+          const idx = Number(row.dataset.previewIdx);
+          if (!pendingJsonDraft.items[idx]) return;
+          pendingJsonDraft.items[idx].word = row.querySelector('[data-pfield="word"]').value.trim();
+          pendingJsonDraft.items[idx].category = row.querySelector('[data-pfield="category"]').value.trim();
+          pendingJsonDraft.items[idx].image = row.querySelector('[data-pfield="image"]').value.trim();
+        });
+      }
+
+      /* ----------------------------------------------------------------------
+         14. EVENT WIRING & KEYBOARD SHORTCUTS
+         ---------------------------------------------------------------------- */
+      function initEvents() {
+        // Mode Switcher
+        document.getElementById("btnModePhysical").addEventListener("click", () => {
+          state.mode = "physical";
+          saveState();
+          renderAll();
+        });
+        document.getElementById("btnModeDigital").addEventListener("click", () => {
+          state.mode = "digital";
+          const expectedLen = state.gridSize * state.gridSize;
+          if (
+            !Array.isArray(state.digitalCards) ||
+            state.digitalCards.length < 2 ||
+            state.digitalCards[0].length !== expectedLen ||
+            state.digitalCards[1].length !== expectedLen
+          ) {
+            buildDigitalBoards();
+          }
+          saveState();
+          renderAll();
+        });
+
+        // Draw & Stage Controls
+        document.getElementById("btnRandomDraw").addEventListener("click", () => executeDraw(false));
+        document.getElementById("btnNextItem").addEventListener("click", () => executeDraw(true));
+        document.getElementById("btnPrevItem").addEventListener("click", viewPreviousItem);
+        document.getElementById("btnReturnLatest").addEventListener("click", returnToLatestItem);
+
+        document.getElementById("btnPauseToggle").addEventListener("click", () => {
+          state.paused = !state.paused;
+          renderAll();
+        });
+
+        document.getElementById("btnResetGame").addEventListener("click", () => {
+          document.getElementById("resetCountWarn").textContent = state.drawnHistory.length;
+          openModal("confirmResetModal");
+        });
+        document.getElementById("btnConfirmResetAction").addEventListener("click", () => {
+          closeModal("confirmResetModal");
+          resetGameRound();
+        });
+
+        // Sound & Fullscreen
+        document.getElementById("btnSoundToggle").addEventListener("click", () => {
+          state.soundEnabled = !state.soundEnabled;
+          saveState();
+          renderAll();
+        });
+
+        document.getElementById("btnMusicToggle").addEventListener("click", () => {
+          state.musicEnabled = !state.musicEnabled;
+          MusicEngine.unlockOnGesture();
+          MusicEngine.syncWithState();
+          saveState();
+          renderAll();
+          showToast(state.musicEnabled ? "🎵 Background music ON" : "🔇 Background music OFF");
+        });
+
+        document.getElementById("btnFullscreen").addEventListener("click", toggleFullscreen);
+        document.getElementById("btnStageFullscreen").addEventListener("click", toggleFullscreen);
+        document.addEventListener("fullscreenchange", updateFullscreenButtons);
+        document.addEventListener("webkitfullscreenchange", updateFullscreenButtons);
+
+        // Digital Board 1P / 2P Toggle & Seamless ViewBoard/iPad Touch Handling
+        const boardsContainer = document.getElementById("digitalBoardsContainer");
+        let lastTouchActivateTime = 0;
+
+        boardsContainer.addEventListener("pointerdown", (e) => {
+          const btn = e.target.closest("[data-cell-idx]");
+          if (!btn) return;
+          if (e.pointerType === "mouse" && e.button !== 0) return;
+          lastTouchActivateTime = Date.now();
+          toggleDigitalCell(Number(btn.dataset.playerIdx || 0), Number(btn.dataset.cellIdx));
+        });
+
+        boardsContainer.addEventListener("click", (e) => {
+          const btn = e.target.closest("[data-cell-idx]");
+          if (!btn) return;
+          // Ignore synthetic click immediately following pointerdown (e.g., keyboard Enter still works)
+          if (Date.now() - lastTouchActivateTime < 450) return;
+          toggleDigitalCell(Number(btn.dataset.playerIdx || 0), Number(btn.dataset.cellIdx));
+        });
+
+        document.getElementById("btnDigital1P").addEventListener("click", () => {
+          if (state.digitalPlayers === 1) return;
+          state.digitalPlayers = 1;
+          saveState();
+          renderDigitalBoard();
+          showToast("Switched to 1 Player Digital Bingo");
+        });
+
+        document.getElementById("btnDigital2P").addEventListener("click", () => {
+          if (state.digitalPlayers === 2) return;
+          state.digitalPlayers = 2;
+          saveState();
+          renderDigitalBoard();
+          showToast("Switched to 2 Players Digital Bingo");
+        });
+
+        document.getElementById("btnNewDigitalCard").addEventListener("click", () => {
+          buildDigitalBoards();
+          saveState();
+          renderDigitalBoard();
+          showToast(
+            state.digitalPlayers === 2
+              ? "Generated fresh cards for Player 1 & Player 2!"
+              : "Generated a fresh Digital Bingo card!"
+          );
+        });
+
+        // Team Score Adjustments
+        document.getElementById("teamStrip").addEventListener("click", (e) => {
+          const btn = e.target.closest("[data-team-delta]");
+          if (!btn) return;
+          const idx = Number(btn.dataset.teamIdx);
+          const delta = Number(btn.dataset.teamDelta);
+          state.teamScores[idx] = Math.max(0, (state.teamScores[idx] || 0) + delta);
+          saveState();
+          renderTeamStrip();
+        });
+
+        // History Tabs, Search, Sort & Export
+        document.getElementById("tabDrawnItems").addEventListener("click", () => {
+          state.historyTab = "drawn";
+          renderHistoryPanel();
+        });
+        document.getElementById("tabRemainingItems").addEventListener("click", () => {
+          state.historyTab = "remaining";
+          renderHistoryPanel();
+        });
+        document.getElementById("btnShowDrawnTab").addEventListener("click", () => {
+          state.historyTab = "drawn";
+          renderHistoryPanel();
+        });
+        document.getElementById("btnShowRemainingTab").addEventListener("click", () => {
+          state.historyTab = "remaining";
+          renderHistoryPanel();
+        });
+
+        document.getElementById("historySearchInput").addEventListener("input", renderHistoryPanel);
+        document.getElementById("btnToggleSort").addEventListener("click", () => {
+          const cycle = { newest: "oldest", oldest: "alpha", alpha: "newest" };
+          state.sortOrder = cycle[state.sortOrder] || "newest";
+          renderHistoryPanel();
+        });
+
+        document.getElementById("btnCopyHistory").addEventListener("click", copyHistoryToClipboard);
+        document.getElementById("btnDownloadTxt").addEventListener("click", downloadDrawnTxt);
+        document.getElementById("btnDownloadCsv").addEventListener("click", downloadDrawnCsv);
+        document.getElementById("btnPrintHistory").addEventListener("click", printDrawHistory);
+
+        // Verification & Winner Modals
+        document.getElementById("btnVerifyBingo").addEventListener("click", openVerificationModal);
+        document.getElementById("btnCloseVerifyModal").addEventListener("click", () => {
+          state.paused = false;
+          closeModal("verifyModal");
+          renderAll();
+        });
+        document.getElementById("btnRejectBingo").addEventListener("click", () => {
+          state.paused = false;
+          closeModal("verifyModal");
+          renderAll();
+          showToast("False alarm — game resumed!");
+        });
+        document.getElementById("verifySearchInput").addEventListener("input", renderVerifyChecklist);
+        document.getElementById("verifyChecklistGrid").addEventListener("click", (e) => {
+          const chip = e.target.closest("[data-verify-id]");
+          if (!chip) return;
+          const id = Number(chip.dataset.verifyId);
+          if (verifyCheckedIds.has(id)) verifyCheckedIds.delete(id);
+          else verifyCheckedIds.add(id);
+          renderVerifyChecklist();
+        });
+        document.getElementById("btnConfirmBingoWinner").addEventListener("click", () => {
+          const who = document.getElementById("verifyWinnerTeam").value.trim();
+          closeModal("verifyModal");
+          triggerWinnerCelebration(
+            who ? `Congratulations, ${who}!` : "Classroom BINGO Champion!",
+            `Verified with ${state.drawnHistory.length} drawn words`
+          );
+        });
+        document.getElementById("btnWinnerContinue").addEventListener("click", () => {
+          state.paused = false;
+          closeModal("winnerModal");
+          renderAll();
+        });
+        document.getElementById("btnWinnerNewRound").addEventListener("click", () => {
+          closeModal("winnerModal");
+          resetGameRound();
+        });
+
+        // Settings Modal & Presets
+        const presetNames = {
+          weather: "☀️ Weather & Seasons",
+          food: "🍔 Food & Night Market",
+          routines: "⏰ Daily Routines",
+          animals: "🦁 Animals & Zoo",
+          places: "🚇 Places & Transport"
+        };
+        const presetContainer = document.getElementById("presetButtonsContainer");
+        Object.entries(presetNames).forEach(([key, label]) => {
+          const b = document.createElement("button");
+          b.className = "btn btn-sm";
+          b.textContent = label;
+          b.addEventListener("click", () => {
+            const p = ESL_PRESETS[key];
+            document.getElementById("inputGameTitle").value = p.gameTitle;
+            document.getElementById("selectGridSize").value = String(p.gridSize);
+            document.getElementById("checkFreeSpace").checked = Boolean(p.freeSpace);
+            settingsVocabDraft = JSON.parse(JSON.stringify(p.items));
+            state.presetName = label.replace(/^[^\s]+\s/, "");
+            renderSettingsVocabRows();
+            showToast(`Loaded "${p.gameTitle}" preset`);
+          });
+          presetContainer.appendChild(b);
+        });
+
+        document.getElementById("btnOpenSettings").addEventListener("click", openSettingsModal);
+        document.getElementById("btnAddVocabRow").addEventListener("click", () => {
+          syncDraftFromInputs();
+          settingsVocabDraft.push({
+            id: Date.now(),
+            word: "",
+            category: "General",
+            image: "📘"
+          });
+          renderSettingsVocabRows();
+        });
+
+        document.getElementById("vocabEditorList").addEventListener("click", (e) => {
+          const delBtn = e.target.closest("[data-del-vocab]");
+          if (!delBtn) return;
+          syncDraftFromInputs();
+          const idx = Number(delBtn.dataset.delVocab);
+          settingsVocabDraft.splice(idx, 1);
+          renderSettingsVocabRows();
+        });
+
+        document.getElementById("btnToggleBulkPaste").addEventListener("click", () => {
+          const box = document.getElementById("bulkPasteBox");
+          box.style.display = box.style.display === "none" ? "block" : "none";
+        });
+
+        document.getElementById("btnApplyBulkPaste").addEventListener("click", () => {
+          syncDraftFromInputs();
+          const raw = document.getElementById("bulkPasteTextarea").value;
+          const words = raw
+            .split(/[\n,]+/)
+            .map((w) => w.trim())
+            .filter(Boolean);
+          words.forEach((w, i) => {
+            settingsVocabDraft.push({ id: Date.now() + i, word: w, category: "Vocabulary", image: "📘" });
+          });
+          document.getElementById("bulkPasteTextarea").value = "";
+          document.getElementById("bulkPasteBox").style.display = "none";
+          renderSettingsVocabRows();
+          showToast(`Added ${words.length} words`);
+        });
+
+        document.getElementById("btnSaveSettings").addEventListener("click", () => {
+          syncDraftFromInputs();
+          const validItems = settingsVocabDraft
+            .filter((item) => item.word && item.word.trim().length > 0)
+            .map((item, idx) => ({
+              id: idx + 1,
+              word: item.word.trim(),
+              category: item.category || "General",
+              image: item.image || "📘"
+            }));
+
+          if (validItems.length < 4) {
+            showToast("Please include at least 4 vocabulary words.");
+            return;
+          }
+
+          state.gameTitle = document.getElementById("inputGameTitle").value.trim() || "Classroom English Bingo";
+          state.gridSize = Number(document.getElementById("selectGridSize").value) || 4;
+          state.teamCount = Number(document.getElementById("selectTeamCount").value);
+          state.timerSeconds = Number(document.getElementById("selectTimerSeconds").value) || 0;
+          state.freeSpace = document.getElementById("checkFreeSpace").checked;
+          state.randomize = document.getElementById("checkRandomize").checked;
+          state.musicEnabled = document.getElementById("checkMusicEnabled").checked;
+          MusicEngine.syncWithState();
+          state.items = validItems;
+          state.drawnHistory = [];
+          state.inspectIndex = -1;
+          state.paused = false;
+
+          stopTurnTimer();
+          buildDigitalBoards();
+          saveState();
+          closeModal("settingsModal");
+          renderAll();
+          showToast("Settings & vocabulary saved!");
+        });
+
+        // JSON Import & Export Triggers
+        const fileInput = document.getElementById("jsonFileInput");
+        document.getElementById("btnTriggerImport").addEventListener("click", () => {
+          fileInput.value = "";
+          fileInput.click();
+        });
+        document.getElementById("btnSettingsImportJson").addEventListener("click", () => {
+          fileInput.value = "";
+          fileInput.click();
+        });
+        fileInput.addEventListener("change", (e) => {
+          if (e.target.files && e.target.files[0]) {
+            handleJsonFileUpload(e.target.files[0]);
+          }
+        });
+
+        document.getElementById("btnExportJson").addEventListener("click", exportGameJson);
+        document.getElementById("btnSettingsExportJson").addEventListener("click", exportGameJson);
+        document.getElementById("btnDownloadSampleJson").addEventListener("click", downloadSampleJson);
+
+        // JSON Preview Modal Actions
+        document.getElementById("btnAddPreviewItem").addEventListener("click", () => {
+          if (!pendingJsonDraft) return;
+          syncJsonPreviewInputs();
+          pendingJsonDraft.items.push({ id: Date.now(), word: "", category: "General", image: "📘" });
+          renderJsonPreviewModal();
+        });
+
+        document.getElementById("jsonPreviewList").addEventListener("click", (e) => {
+          const del = e.target.closest("[data-del-preview]");
+          if (!del || !pendingJsonDraft) return;
+          syncJsonPreviewInputs();
+          pendingJsonDraft.items.splice(Number(del.dataset.delPreview), 1);
+          renderJsonPreviewModal();
+        });
+
+        document.getElementById("btnConfirmJsonImport").addEventListener("click", () => {
+          if (!pendingJsonDraft) return;
+          syncJsonPreviewInputs();
+          const cleaned = pendingJsonDraft.items
+            .filter((item) => item.word && item.word.trim().length > 0)
+            .map((item, idx) => ({
+              id: idx + 1,
+              word: item.word.trim(),
+              category: item.category || "General",
+              image: item.image || "📘"
+            }));
+
+          if (cleaned.length < 4) {
+            showToast("At least 4 valid words are required.");
+            return;
+          }
+
+          state.gameTitle = pendingJsonDraft.gameTitle;
+          state.presetName = "Imported JSON";
+          state.gridSize = pendingJsonDraft.gridSize;
+          state.freeSpace = pendingJsonDraft.freeSpace;
+          state.items = cleaned;
+          state.drawnHistory = [];
+          state.inspectIndex = -1;
+          state.paused = false;
+
+          stopTurnTimer();
+          buildDigitalBoards();
+          saveState();
+          closeModal("jsonPreviewModal");
+          closeModal("settingsModal");
+          renderAll();
+          showToast(`Imported "${state.gameTitle}" (${state.items.length} words)`);
+        });
+
+        // Guide Modal & Generic Modal Close Handlers
+        document.getElementById("btnOpenGuide").addEventListener("click", () => openModal("guideModal"));
+
+        document.querySelectorAll("[data-close-modal]").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const modalId = btn.getAttribute("data-close-modal");
+            if (modalId) closeModal(modalId);
+          });
+        });
+
+        document.querySelectorAll(".modal-backdrop").forEach((backdrop) => {
+          backdrop.addEventListener("click", (e) => {
+            if (e.target === backdrop && backdrop.id !== "verifyModal" && backdrop.id !== "winnerModal") {
+              backdrop.classList.remove("open");
+            }
+          });
+        });
+
+        // Classroom Keyboard Shortcuts
+        document.addEventListener("keydown", (e) => {
+          const tag = document.activeElement && document.activeElement.tagName;
+          if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+
+          const anyModalOpen = Boolean(document.querySelector(".modal-backdrop.open"));
+          if (e.key === "Escape") {
+            if (document.body.classList.contains("theater-fullscreen")) {
+              toggleFullscreen();
+            }
+            document.querySelectorAll(".modal-backdrop.open").forEach((m) => {
+              if (m.id === "verifyModal") {
+                state.paused = false;
+                renderAll();
+              }
+              m.classList.remove("open");
+            });
+            return;
+          }
+
+          if (anyModalOpen) return;
+
+          if (e.code === "Space" || e.key === "ArrowRight") {
+            e.preventDefault();
+            executeDraw(e.key === "ArrowRight" && !state.randomize ? false : false);
+          } else if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            viewPreviousItem();
+          } else if (e.key === "p" || e.key === "P") {
+            e.preventDefault();
+            state.paused = !state.paused;
+            renderAll();
+          } else if (e.key === "v" || e.key === "V") {
+            e.preventDefault();
+            openVerificationModal();
+          } else if (e.key === "f" || e.key === "F") {
+            e.preventDefault();
+            toggleFullscreen();
+          }
+        });
+      }
+
+      function updateFullscreenButtons() {
+        const isFs = Boolean(
+          document.fullscreenElement ||
+          document.webkitFullscreenElement ||
+          document.body.classList.contains("theater-fullscreen")
+        );
+        const topBtn = document.getElementById("btnFullscreen");
+        const stageBtn = document.getElementById("btnStageFullscreen");
+        if (topBtn) {
+          topBtn.innerHTML = isFs ? "<span>🗗</span> Exit Fullscreen" : "<span>⛶</span> Fullscreen";
+          topBtn.classList.toggle("btn-royal", isFs);
+        }
+        if (stageBtn) {
+          stageBtn.innerHTML = isFs ? "<span>🗗</span> Exit Fullscreen" : "<span>⛶</span> Fullscreen";
+          stageBtn.classList.toggle("btn-royal", isFs);
+        }
+      }
+
+      function toggleFullscreen() {
+        const docEl = document.documentElement;
+        const nativeFsEl = document.fullscreenElement || document.webkitFullscreenElement;
+        const isTheater = document.body.classList.contains("theater-fullscreen");
+
+        if (!nativeFsEl && !isTheater) {
+          const req = docEl.requestFullscreen || docEl.webkitRequestFullscreen;
+          if (req) {
+            Promise.resolve(req.call(docEl))
+              .then(() => {
+                updateFullscreenButtons();
+                showToast("Entered Fullscreen ViewBoard Mode");
+              })
+              .catch(() => {
+                document.body.classList.add("theater-fullscreen");
+                updateFullscreenButtons();
+                showToast("Entered Expanded ViewBoard Mode");
+              });
+          } else {
+            document.body.classList.add("theater-fullscreen");
+            updateFullscreenButtons();
+            showToast("Entered Expanded ViewBoard Mode");
+          }
+        } else {
+          if (nativeFsEl) {
+            const exit = document.exitFullscreen || document.webkitExitFullscreen;
+            if (exit) exit.call(document).catch(() => {});
+          }
+          document.body.classList.remove("theater-fullscreen");
+          updateFullscreenButtons();
+          showToast("Exited Fullscreen");
+        }
+      }
+
+      /* ----------------------------------------------------------------------
+         15. INITIALIZATION
+         ---------------------------------------------------------------------- */
+      window.addEventListener("DOMContentLoaded", () => {
+        loadState();
+        const expectedLen = state.gridSize * state.gridSize;
+        if (
+          !Array.isArray(state.digitalCards) ||
+          state.digitalCards.length < 2 ||
+          state.digitalCards[0].length !== expectedLen ||
+          state.digitalCards[1].length !== expectedLen
+        ) {
+          buildDigitalBoards();
+        }
+        initEvents();
+        renderAll();
+
+        const bootstrapMusic = () => {
+          MusicEngine.unlockOnGesture();
+          window.removeEventListener("pointerdown", bootstrapMusic);
+          window.removeEventListener("keydown", bootstrapMusic);
+        };
+        window.addEventListener("pointerdown", bootstrapMusic, { once: true });
+        window.addEventListener("keydown", bootstrapMusic, { once: true });
+      });
+    })();
+  </script>
+</body>
+</html>
